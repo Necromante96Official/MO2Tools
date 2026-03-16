@@ -44,7 +44,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(0, 1, 2, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(0, 1, 3, mobase.ReleaseType.FINAL)
 
     def isActive(self) -> bool:
         return True
@@ -69,7 +69,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
             mobase.PluginSetting(
                 "deleteDownloadSidecars", "Excluir metadados/arquivos auxiliares do download", True),
             mobase.PluginSetting(
-                "autoInstallRetryCount", "Quantidade de retentativas do Auto Install por download", 4),
+                "autoInstallRetryCount", "Quantidade de retentativas do Auto Install por download", 8),
             mobase.PluginSetting(
                 "autoInstallEventWaitSeconds", "Tempo de espera (s) por confirmação do evento de instalação", 4),
             mobase.PluginSetting(

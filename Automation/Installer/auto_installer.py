@@ -1,8 +1,9 @@
-# Auto-Installer robusto para MO2Tools v0.1.2
+# Auto-Installer robusto para MO2Tools v0.1.3
 import os
 import queue
 import time
 import logging
+from logging.handlers import RotatingFileHandler
 import re
 import zipfile
 from typing import Any, Dict, List, Optional, Set
@@ -32,6 +33,40 @@ except ImportError:
 
 _logger = logging.getLogger("MO2Tools.Installer")
 _logger.setLevel(logging.DEBUG)
+
+
+def _default_log_path() -> str:
+    plugin_root = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", ".."))
+    return os.path.join(plugin_root, "Logs", "mo2tools_installer.log")
+
+
+def _ensure_file_logging() -> str:
+    target_path = _default_log_path()
+    target_norm = _norm_path(target_path)
+
+    for handler in _logger.handlers:
+        base_filename = getattr(handler, "baseFilename", None)
+        if base_filename and _norm_path(str(base_filename)) == target_norm:
+            return target_path
+
+    os.makedirs(os.path.dirname(target_path), exist_ok=True)
+
+    rotating = RotatingFileHandler(
+        target_path,
+        maxBytes=1_024_000,
+        backupCount=3,
+        encoding="utf-8",
+    )
+    rotating.setLevel(logging.DEBUG)
+    rotating.setFormatter(
+        logging.Formatter(
+            "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+            "%Y-%m-%d %H:%M:%S",
+        )
+    )
+    _logger.addHandler(rotating)
+    return target_path
 
 
 def _norm_path(path_value: str) -> str:
@@ -109,6 +144,8 @@ class EnhancedAutoInstaller:
     def __init__(self, organizer: Any) -> None:
         self._organizer = organizer
         self._download_manager = organizer.downloadManager() if organizer else None
+        self._session_started_at = time.time()
+        self._log_file_path = _ensure_file_logging()
 
         self._install_queue: "queue.Queue[str]" = queue.Queue()
         self._installing = False
@@ -131,6 +168,12 @@ class EnhancedAutoInstaller:
         self._manual_install_items: List[Dict[str, str]] = []
 
         self._download_hook_registered = False
+        _logger.info(
+            "Inicializando AutoInstaller | log=%s | hasOrganizer=%s | hasDownloadManager=%s",
+            self._log_file_path,
+            bool(self._organizer),
+            bool(self._download_manager),
+        )
         if self._download_manager:
             try:
                 self._download_manager.onDownloadComplete(
@@ -182,7 +225,7 @@ class EnhancedAutoInstaller:
         try:
             self._on_download_complete(download_id)
         except Exception as exc:
-            _logger.error(
+            _logger.exception(
                 f"Exceção no callback de download {download_id}: {exc}")
 
     def _on_download_complete(self, download_id: int) -> None:
@@ -190,13 +233,25 @@ class EnhancedAutoInstaller:
 
     def _try_handle_download_complete(self, download_id: int, dedupe_event: bool) -> None:
         if not self._get_bool("enabled", True):
+            _logger.debug("AutoInstall ignorado: plugin desabilitado")
             return
         if not self._get_bool("autoInstall", True):
+            _logger.debug("AutoInstall ignorado: autoInstall desabilitado")
             return
         if not self._download_manager:
+            _logger.debug(
+                "AutoInstall ignorado: download manager indisponível")
             return
 
+        _logger.debug(
+            "Processando download completo | id=%s | dedupeEvent=%s",
+            int(download_id),
+            bool(dedupe_event),
+        )
+
         if dedupe_event and self._is_duplicate_download_event(download_id):
+            _logger.debug(
+                "Evento de download duplicado ignorado | id=%s", int(download_id))
             return
 
         try:
@@ -214,6 +269,11 @@ class EnhancedAutoInstaller:
             return
 
         archive_path = str(archive_path)
+        _logger.debug(
+            "Caminho de download obtido | id=%s | path=%s",
+            int(download_id),
+            archive_path,
+        )
         if not self._wait_for_archive_path(archive_path, timeout_seconds=25.0):
             _logger.warning(
                 f"Arquivo de download não ficou disponível a tempo: {archive_path}")
@@ -232,8 +292,15 @@ class EnhancedAutoInstaller:
         self._download_retry_counts.pop(int(download_id), None)
 
         if not self._enqueue_install_path(archive_path):
+            _logger.debug(
+                "Download já presente em fila/inflight/dedupe | id=%s | path=%s",
+                int(download_id),
+                archive_path,
+            )
             return
 
+        _logger.info("Download enfileirado para instalação | id=%s | path=%s", int(
+            download_id), archive_path)
         QTimer.singleShot(250, self._process_install_queue)
 
     def _is_duplicate_download_event(self, download_id: int) -> bool:
@@ -248,7 +315,7 @@ class EnhancedAutoInstaller:
         return False
 
     def _schedule_download_retry(self, download_id: int, reason: str) -> None:
-        max_retries = self._get_int("autoInstallRetryCount", 4)
+        max_retries = self._get_int("autoInstallRetryCount", 8)
         attempt = int(self._download_retry_counts.get(int(download_id), 0)) + 1
         self._download_retry_counts[int(download_id)] = attempt
 
@@ -375,6 +442,11 @@ class EnhancedAutoInstaller:
                 name_only = os.path.basename(normalized)
                 if name_only:
                     self._installed_events_by_name[name_only] = now
+                _logger.info(
+                    "Evento onModInstalled recebido | installFile=%s | baseName=%s",
+                    normalized,
+                    name_only,
+                )
         except Exception:
             pass
 
@@ -415,13 +487,28 @@ class EnhancedAutoInstaller:
 
                 self._pending_install_paths.discard(normalized)
                 self._inflight_install_paths.add(normalized)
+                installed_ok = False
                 try:
-                    success = self._install_archive(archive_path)
-                    if not success:
-                        self._queue_manual_install(
-                            archive_path,
-                            "Falha no fluxo automático; necessário confirmar manualmente.",
-                        )
+                    _logger.info(
+                        "Iniciando instalação automática | path=%s", archive_path)
+                    installed_ok = self._install_archive(archive_path)
+                    if not installed_ok:
+                        download_id = self._download_id_by_path.get(normalized)
+                        if download_id is not None:
+                            _logger.warning(
+                                "Instalação automática falhou; agendando nova retentativa | id=%s | path=%s",
+                                int(download_id),
+                                archive_path,
+                            )
+                            self._schedule_download_retry(
+                                int(download_id),
+                                "Falha ao instalar após tentativas locais",
+                            )
+                        else:
+                            self._queue_manual_install(
+                                archive_path,
+                                "Falha no fluxo automático; necessário confirmar manualmente.",
+                            )
                     elif self._get_bool("deleteDownloadAfterInstall", True):
                         self._cleanup_download_artifacts(archive_path)
                 except Exception as exc:
@@ -429,7 +516,8 @@ class EnhancedAutoInstaller:
                     self._queue_manual_install(
                         archive_path, f"Erro interno durante instalação: {exc}")
                 finally:
-                    self._mark_recent_install(archive_path)
+                    if installed_ok:
+                        self._mark_recent_install(archive_path)
                     self._inflight_install_paths.discard(normalized)
         except Exception as exc:
             _logger.error(f"Falha inesperada no processamento da fila: {exc}")
@@ -472,6 +560,13 @@ class EnhancedAutoInstaller:
             return False
 
         started_at = time.time()
+        _logger.debug(
+            "Tentativa de instalação iniciada | path=%s | fast=%s | autoReplace=%s | timeout=%.1fs",
+            archive_path,
+            bool(enable_fast_mode),
+            bool(enable_auto_replace),
+            float(timeout_seconds),
+        )
 
         timer = self._start_install_assistant(
             timeout_seconds=timeout_seconds,
@@ -508,17 +603,37 @@ class EnhancedAutoInstaller:
             event_wait_seconds = float(self._get_int(
                 "autoInstallEventWaitSeconds", 4))
             if self._wait_for_install_event(archive_path, started_at, event_wait_seconds):
+                _logger.info(
+                    "Instalação confirmada por evento | path=%s | elapsed=%.2fs",
+                    archive_path,
+                    time.time() - started_at,
+                )
                 return True
         except Exception as exc:
-            _logger.debug(
-                f"Tentativa de instalação falhou para '{archive_path}': {exc}")
+            _logger.warning(
+                f"Tentativa de instalação falhou para '{archive_path}': {exc}",
+                exc_info=True,
+            )
         finally:
             self._stop_install_assistant(timer)
 
         if self._is_successful_install_result(installed_mod):
+            _logger.info(
+                "Instalação confirmada por retorno installMod | path=%s | elapsed=%.2fs",
+                archive_path,
+                time.time() - started_at,
+            )
             return True
 
-        return self._was_archive_installed_recently(archive_path, started_at - 0.5)
+        by_event = self._was_archive_installed_recently(
+            archive_path, started_at - 0.5)
+        _logger.debug(
+            "Tentativa encerrada sem confirmação direta | path=%s | eventDetected=%s | elapsed=%.2fs",
+            archive_path,
+            bool(by_event),
+            time.time() - started_at,
+        )
+        return by_event
 
     def _is_successful_install_result(self, install_result: Any) -> bool:
         if install_result is None:
