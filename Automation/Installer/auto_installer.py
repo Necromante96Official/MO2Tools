@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.4
+# Auto-Installer robusto para MO2Tools v0.1.5
 import os
 import queue
 import time
@@ -6,7 +6,8 @@ import logging
 from logging.handlers import RotatingFileHandler
 import re
 import zipfile
-from typing import Any, Dict, List, Optional, Set
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 try:
     from PyQt6.QtCore import QTimer
@@ -140,6 +141,33 @@ def _title_case_mod_name(name: str) -> str:
     return " ".join(words) if words else "Mod"
 
 
+@dataclass
+class InstallJobState:
+    archive_path: str
+    normalized_path: str
+    download_id: Optional[int] = None
+    created_at: float = field(default_factory=time.time)
+    updated_at: float = field(default_factory=time.time)
+    local_attempts: int = 0
+    total_requeues: int = 0
+    last_error: str = ""
+    last_result: str = "created"
+    last_install_started_at: float = 0.0
+    last_install_finished_at: float = 0.0
+    next_retry_at: float = 0.0
+    history: List[str] = field(default_factory=list)
+
+    def touch(self, result: str, details: str = "") -> None:
+        self.updated_at = time.time()
+        self.last_result = result
+        if details:
+            self.last_error = details
+            stamp = time.strftime("%H:%M:%S", time.localtime(self.updated_at))
+            self.history.append(f"{stamp} {result}: {details}")
+            if len(self.history) > 30:
+                self.history = self.history[-30:]
+
+
 class EnhancedAutoInstaller:
     def __init__(self, organizer: Any) -> None:
         self._organizer = organizer
@@ -150,6 +178,12 @@ class EnhancedAutoInstaller:
         self._install_queue: "queue.Queue[str]" = queue.Queue()
         self._installing = False
         self._queue_reprocess_requested = False
+        self._job_states_by_path: Dict[str, InstallJobState] = {}
+        self._inflight_started_at: Dict[str, float] = {}
+        self._recent_install_tokens: Dict[str,
+                                          Tuple[Optional[int], float]] = {}
+        self._last_maintenance_log_at = 0.0
+        self._consecutive_failure_count = 0
 
         self._pending_install_paths: Set[str] = set()
         self._inflight_install_paths: Set[str] = set()
@@ -164,9 +198,16 @@ class EnhancedAutoInstaller:
         self._download_dedupe_ttl_seconds = 360.0
         self._installed_event_ttl_seconds = 600.0
         self._download_retry_delay_ms_base = 1200
+        self._recent_install_token_ttl_seconds = 18.0
+        self._local_retry_base_delay_seconds = 1.4
+        self._local_retry_max_attempts = 5
+        self._local_retry_max_requeues = 12
+        self._inflight_job_timeout_seconds = 45.0
+        self._maintenance_interval_ms = 900
 
         self._active_dialog_timers: List[QTimer] = []
         self._manual_install_items: List[Dict[str, str]] = []
+        self._maintenance_timer: Optional[QTimer] = None
 
         self._download_hook_registered = False
         _logger.info(
@@ -189,6 +230,8 @@ class EnhancedAutoInstaller:
                 self._organizer.modList().onModInstalled(self._record_install_event)
         except Exception as exc:
             _logger.warning(f"Falha ao conectar onModInstalled: {exc}")
+
+        self._start_maintenance_timer()
 
     def _get_bool(self, key: str, default: bool) -> bool:
         if not self._organizer:
@@ -221,6 +264,237 @@ class EnhancedAutoInstaller:
             return parsed if parsed > 0 else default
         except Exception:
             return default
+
+    def _start_maintenance_timer(self) -> None:
+        if self._maintenance_timer is not None:
+            return
+
+        timer = QTimer()
+        timer.setInterval(int(self._maintenance_interval_ms))
+        timer.timeout.connect(self._maintenance_tick)
+        timer.start()
+        self._maintenance_timer = timer
+        _logger.debug(
+            "Maintenance timer iniciado | intervalMs=%s",
+            int(self._maintenance_interval_ms),
+        )
+
+    def _maintenance_tick(self) -> None:
+        try:
+            self._prune_recent_install_tokens()
+            self._prune_job_states()
+            self._recover_stuck_inflight_jobs()
+
+            if (not self._installing) and (not self._install_queue.empty()):
+                self._process_install_queue()
+
+            now = time.time()
+            if (now - self._last_maintenance_log_at) >= 12.0:
+                self._last_maintenance_log_at = now
+                self._log_runtime_snapshot()
+        except Exception as exc:
+            _logger.warning("Falha no maintenance tick: %s",
+                            exc, exc_info=True)
+
+    def _log_runtime_snapshot(self) -> None:
+        _logger.debug(
+            "Snapshot fila | queueApprox=%s | pending=%s | inflight=%s | jobs=%s | failures=%s",
+            self._install_queue.qsize(),
+            len(self._pending_install_paths),
+            len(self._inflight_install_paths),
+            len(self._job_states_by_path),
+            self._consecutive_failure_count,
+        )
+
+    def _prune_job_states(self) -> None:
+        now = time.time()
+        expire_after = 20.0 * 60.0
+        expired: List[str] = []
+
+        for normalized, state in self._job_states_by_path.items():
+            if normalized in self._pending_install_paths:
+                continue
+            if normalized in self._inflight_install_paths:
+                continue
+            if (now - state.updated_at) >= expire_after:
+                expired.append(normalized)
+
+        for normalized in expired:
+            self._job_states_by_path.pop(normalized, None)
+
+        if expired:
+            _logger.debug("Jobs expirados removidos: %s", len(expired))
+
+    def _prune_recent_install_tokens(self) -> None:
+        now = time.time()
+        expire_after = max(3.0, self._recent_install_token_ttl_seconds)
+        expired = [
+            path_key
+            for path_key, (_, ts) in self._recent_install_tokens.items()
+            if (now - ts) >= expire_after
+        ]
+        for path_key in expired:
+            self._recent_install_tokens.pop(path_key, None)
+
+    def _recover_stuck_inflight_jobs(self) -> None:
+        if not self._inflight_started_at:
+            return
+
+        now = time.time()
+        timed_out: List[str] = []
+        for normalized, started_at in self._inflight_started_at.items():
+            if (now - started_at) >= max(8.0, self._inflight_job_timeout_seconds):
+                timed_out.append(normalized)
+
+        for normalized in timed_out:
+            self._inflight_started_at.pop(normalized, None)
+            self._inflight_install_paths.discard(normalized)
+
+            state = self._job_states_by_path.get(normalized)
+            if state is None:
+                continue
+
+            state.touch("watchdog-timeout",
+                        "Job travado em inflight; reencaminhado")
+            _logger.warning(
+                "Watchdog detectou job travado | path=%s | localAttempts=%s",
+                state.archive_path,
+                state.local_attempts,
+            )
+            self._schedule_local_install_retry(
+                archive_path=state.archive_path,
+                reason="Watchdog recuperou inflight travado",
+                delay_seconds=0.45,
+                force=True,
+            )
+
+    def _get_or_create_job_state(self, archive_path: str, download_id: Optional[int]) -> InstallJobState:
+        normalized = _norm_path(archive_path)
+        state = self._job_states_by_path.get(normalized)
+        if state is None:
+            state = InstallJobState(
+                archive_path=archive_path,
+                normalized_path=normalized,
+                download_id=download_id,
+            )
+            state.touch("created", "Job criado")
+            self._job_states_by_path[normalized] = state
+        else:
+            state.archive_path = archive_path
+            if download_id is not None:
+                state.download_id = int(download_id)
+            state.touch("updated", "Job atualizado")
+        return state
+
+    def _mark_job_attempt_start(self, normalized: str) -> None:
+        state = self._job_states_by_path.get(normalized)
+        if state is None:
+            return
+        state.local_attempts += 1
+        state.last_install_started_at = time.time()
+        state.touch("attempt", f"Tentativa local #{state.local_attempts}")
+
+    def _mark_job_result(self, normalized: str, success: bool, reason: str) -> None:
+        state = self._job_states_by_path.get(normalized)
+        if state is None:
+            return
+        state.last_install_finished_at = time.time()
+        state.touch("success" if success else "failure", reason)
+
+    def _clear_job_state(self, archive_path: str) -> None:
+        normalized = _norm_path(archive_path)
+        self._job_states_by_path.pop(normalized, None)
+        self._inflight_started_at.pop(normalized, None)
+
+    def _can_accept_recent_token(self, normalized: str, download_id: Optional[int]) -> bool:
+        token = self._recent_install_tokens.get(normalized)
+        if token is None:
+            return True
+
+        prev_download_id, prev_ts = token
+        age = time.time() - prev_ts
+        if age >= self._recent_install_token_ttl_seconds:
+            return True
+
+        # Só deduplica de fato quando for o mesmo download em janela curta.
+        if prev_download_id is not None and download_id is not None:
+            return int(prev_download_id) != int(download_id)
+        return False
+
+    def _register_install_token(self, normalized: str, download_id: Optional[int]) -> None:
+        self._recent_install_tokens[normalized] = (download_id, time.time())
+
+    def _force_enqueue_install_path(self, archive_path: str, download_id: Optional[int], reason: str) -> bool:
+        normalized = _norm_path(archive_path)
+        self._get_or_create_job_state(archive_path, download_id)
+        if normalized in self._pending_install_paths or normalized in self._inflight_install_paths:
+            return False
+
+        self._pending_install_paths.add(normalized)
+        self._install_queue.put(archive_path)
+        _logger.debug("Enqueue forçado | path=%s | reason=%s",
+                      archive_path, reason)
+        return True
+
+    def _schedule_local_install_retry(
+        self,
+        archive_path: str,
+        reason: str,
+        delay_seconds: float,
+        force: bool = False,
+    ) -> bool:
+        normalized = _norm_path(archive_path)
+        state = self._job_states_by_path.get(normalized)
+        if state is None:
+            state = self._get_or_create_job_state(
+                archive_path, download_id=None)
+
+        max_attempts = max(2, self._get_int("autoInstallRetryCount", 8))
+        max_local = max(self._local_retry_max_attempts, max_attempts)
+
+        if state.local_attempts >= max_local and not force:
+            _logger.warning(
+                "Retry local bloqueado por limite | path=%s | attempts=%s/%s",
+                archive_path,
+                state.local_attempts,
+                max_local,
+            )
+            return False
+
+        if state.total_requeues >= self._local_retry_max_requeues and not force:
+            _logger.warning(
+                "Retry local bloqueado por requeues | path=%s | requeues=%s/%s",
+                archive_path,
+                state.total_requeues,
+                self._local_retry_max_requeues,
+            )
+            return False
+
+        delay_seconds = max(0.15, float(delay_seconds))
+        state.total_requeues += 1
+        state.next_retry_at = time.time() + delay_seconds
+        state.touch(
+            "requeue", f"Local retry em {delay_seconds:.2f}s: {reason}")
+
+        def _requeue() -> None:
+            try:
+                self._force_enqueue_install_path(
+                    archive_path=archive_path,
+                    download_id=state.download_id,
+                    reason=f"retry-local:{reason}",
+                )
+                self._process_install_queue()
+            except Exception as inner_exc:
+                _logger.warning(
+                    "Falha ao reencaminhar retry local | path=%s | reason=%s | err=%s",
+                    archive_path,
+                    reason,
+                    inner_exc,
+                    exc_info=True,
+                )
+
+        QTimer.singleShot(int(delay_seconds * 1000), _requeue)
+        return True
 
     def _safe_on_download_complete(self, download_id: int) -> None:
         try:
@@ -292,7 +566,7 @@ class EnhancedAutoInstaller:
         self._download_id_by_path[_norm_path(archive_path)] = int(download_id)
         self._download_retry_counts.pop(int(download_id), None)
 
-        if not self._enqueue_install_path(archive_path):
+        if not self._enqueue_install_path(archive_path, int(download_id)):
             _logger.debug(
                 "Download já presente em fila/inflight/dedupe | id=%s | path=%s",
                 int(download_id),
@@ -335,24 +609,37 @@ class EnhancedAutoInstaller:
                 d, dedupe_event=False),
         )
 
-    def _enqueue_install_path(self, archive_path: str) -> bool:
+    def _enqueue_install_path(self, archive_path: str, download_id: Optional[int]) -> bool:
         normalized = _norm_path(archive_path)
         now = time.time()
+        self._get_or_create_job_state(archive_path, download_id)
 
         self._prune_recent_map(self._recent_install_paths,
                                now, self._install_dedupe_ttl_seconds)
+        self._prune_recent_install_tokens()
 
         if normalized in self._pending_install_paths:
             return False
         if normalized in self._inflight_install_paths:
             return False
 
-        last_seen = self._recent_install_paths.get(normalized)
-        if last_seen is not None and (now - last_seen) < self._install_dedupe_ttl_seconds:
+        if not self._can_accept_recent_token(normalized, download_id):
+            _logger.debug(
+                "Dedupe curto bloqueou enqueue | path=%s | downloadId=%s",
+                archive_path,
+                download_id,
+            )
             return False
 
         self._pending_install_paths.add(normalized)
+        self._register_install_token(normalized, download_id)
         self._install_queue.put(archive_path)
+        _logger.debug(
+            "Arquivo enfileirado | path=%s | downloadId=%s | queueApprox=%s",
+            archive_path,
+            download_id,
+            self._install_queue.qsize(),
+        )
         return True
 
     def _mark_recent_install(self, archive_path: str) -> None:
@@ -488,18 +775,53 @@ class EnhancedAutoInstaller:
                 queued_archive_path = self._install_queue.get()
                 archive_path = str(queued_archive_path)
                 normalized = _norm_path(archive_path)
+                state = self._get_or_create_job_state(
+                    archive_path,
+                    self._download_id_by_path.get(normalized),
+                )
 
                 if normalized in self._inflight_install_paths:
+                    _logger.debug(
+                        "Arquivo ignorado por inflight ativo | path=%s", archive_path)
                     continue
 
                 self._pending_install_paths.discard(normalized)
                 self._inflight_install_paths.add(normalized)
+                self._inflight_started_at[normalized] = time.time()
+                self._mark_job_attempt_start(normalized)
                 installed_ok = False
                 try:
                     _logger.info(
-                        "Iniciando instalação automática | path=%s", archive_path)
+                        "Iniciando instalação automática | path=%s | localAttempt=%s",
+                        archive_path,
+                        state.local_attempts,
+                    )
                     installed_ok = self._install_archive(archive_path)
                     if not installed_ok:
+                        self._mark_job_result(
+                            normalized,
+                            False,
+                            "Falha no fluxo automático da tentativa local",
+                        )
+                        self._consecutive_failure_count += 1
+
+                        backoff_seconds = self._local_retry_base_delay_seconds * \
+                            max(1, state.local_attempts)
+                        scheduled_local = self._schedule_local_install_retry(
+                            archive_path=archive_path,
+                            reason="Falha da instalação automática local",
+                            delay_seconds=backoff_seconds,
+                        )
+
+                        if scheduled_local:
+                            _logger.warning(
+                                "Instalação falhou; retry local agendado | path=%s | delay=%.2fs | attempt=%s",
+                                archive_path,
+                                backoff_seconds,
+                                state.local_attempts,
+                            )
+                            continue
+
                         download_id = self._download_id_by_path.get(normalized)
                         if download_id is not None:
                             _logger.warning(
@@ -516,15 +838,28 @@ class EnhancedAutoInstaller:
                                 archive_path,
                                 "Falha no fluxo automático; necessário confirmar manualmente.",
                             )
-                    elif self._get_bool("deleteDownloadAfterInstall", True):
-                        self._cleanup_download_artifacts(archive_path)
+                    else:
+                        self._mark_job_result(
+                            normalized, True, "Instalação concluída com sucesso")
+                        self._consecutive_failure_count = 0
+                        if self._get_bool("deleteDownloadAfterInstall", True):
+                            self._cleanup_download_artifacts(archive_path)
                 except Exception as exc:
                     _logger.error(f"Falha ao instalar '{archive_path}': {exc}")
+                    self._mark_job_result(normalized, False, f"Exceção: {exc}")
+                    self._consecutive_failure_count += 1
+                    self._schedule_local_install_retry(
+                        archive_path=archive_path,
+                        reason=f"Exceção no processamento: {exc}",
+                        delay_seconds=1.2,
+                    )
                     self._queue_manual_install(
                         archive_path, f"Erro interno durante instalação: {exc}")
                 finally:
                     if installed_ok:
                         self._mark_recent_install(archive_path)
+                        self._clear_job_state(archive_path)
+                    self._inflight_started_at.pop(normalized, None)
                     self._inflight_install_paths.discard(normalized)
         except Exception as exc:
             _logger.error(f"Falha inesperada no processamento da fila: {exc}")
@@ -546,22 +881,52 @@ class EnhancedAutoInstaller:
         fast_install = self._get_bool("fastInstall", True)
         auto_replace = self._get_bool("autoReplace", True)
 
-        first_try = self._run_install_attempt(
-            archive_path,
-            enable_fast_mode=fast_install,
-            enable_auto_replace=auto_replace,
-            timeout_seconds=6.0,
+        strategies = self._build_install_strategies(
+            fast_install=fast_install,
+            auto_replace=auto_replace,
         )
-        if first_try:
-            return True
 
-        second_try = self._run_install_attempt(
-            archive_path,
-            enable_fast_mode=True,
-            enable_auto_replace=auto_replace,
-            timeout_seconds=8.0,
-        )
-        return second_try
+        for index, strategy in enumerate(strategies, start=1):
+            ok = self._run_install_attempt(
+                archive_path,
+                enable_fast_mode=bool(strategy["fast"]),
+                enable_auto_replace=bool(strategy["replace"]),
+                timeout_seconds=float(strategy["timeout"]),
+            )
+            if ok:
+                _logger.debug(
+                    "Instalação concluída por estratégia | path=%s | strategyIndex=%s/%s",
+                    archive_path,
+                    index,
+                    len(strategies),
+                )
+                return True
+
+            cool_down = float(strategy.get("cooldown", 0.0))
+            if cool_down > 0:
+                self._drain_ui_events(cool_down)
+
+        return False
+
+    def _build_install_strategies(self, fast_install: bool, auto_replace: bool) -> List[Dict[str, Any]]:
+        # Estratégias em cascata para cobrir cenários de timing e diálogos inconsistentes do MO2.
+        return [
+            {"fast": fast_install, "replace": auto_replace,
+                "timeout": 6.0, "cooldown": 0.15},
+            {"fast": True, "replace": auto_replace,
+                "timeout": 8.0, "cooldown": 0.25},
+            {"fast": True, "replace": True, "timeout": 10.0, "cooldown": 0.35},
+            {"fast": False, "replace": True, "timeout": 11.0, "cooldown": 0.35},
+        ]
+
+    def _drain_ui_events(self, seconds: float) -> None:
+        deadline = time.time() + max(0.05, float(seconds))
+        while time.time() < deadline:
+            try:
+                QApplication.processEvents()
+            except Exception:
+                break
+            time.sleep(0.04)
 
     def _run_install_attempt(
         self,
