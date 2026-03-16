@@ -1,5 +1,8 @@
 # UI Module Master
-from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QPushButton
+try:
+    from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QPushButton
+except ImportError:
+    from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QPushButton
 
 
 class MO2ToolsDialog(QDialog):

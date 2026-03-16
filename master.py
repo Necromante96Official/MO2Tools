@@ -3,7 +3,6 @@ from PyQt6.QtCore import QCoreApplication
 from PyQt6.QtGui import QIcon
 import os
 
-from .2.0_UI.master import MO2ToolsDialog
 
 class MO2ToolsMaster(mobase.IPluginTool):
     def __init__(self):
@@ -13,14 +12,14 @@ class MO2ToolsMaster(mobase.IPluginTool):
 
     def init(self, organizer: mobase.IOrganizer) -> bool:
         self._organizer = organizer
-        
-        # Inicializar Core e Automações
-        from .1.0_Core.master import CoreMaster
-        from .3.0_Automation.master import AutomationMaster
-        
+
+        # Inicializar Core e Automações (Arquitetura Modular Limpa)
+        from .Core.master import CoreMaster
+        from .Automation.master import AutomationMaster
+
         self.core = CoreMaster(organizer)
         self.automation = AutomationMaster(organizer)
-        
+
         return True
 
     def name(self) -> str:
@@ -41,10 +40,12 @@ class MO2ToolsMaster(mobase.IPluginTool):
     def settings(self) -> list[mobase.PluginSetting]:
         return [
             mobase.PluginSetting("enabled", "Habilitar MO2Tools", True),
-            mobase.PluginSetting("autoInstall", "Instalação Automática Ultra Mejorada", True),
+            mobase.PluginSetting(
+                "autoInstall", "Instalação Automática Ultra Mejorada", True),
         ]
 
     def display(self) -> None:
+        from .UI.master import MO2ToolsDialog
         dialog = MO2ToolsDialog(self._parent_widget)
         dialog.exec()
 

@@ -1,6 +1,6 @@
 # Core Module Master
-from .1.1_Config.manager import ConfigManager
 
 class CoreMaster:
     def __init__(self, organizer):
+        from .Config.manager import ConfigManager
         self.config = ConfigManager(organizer)
