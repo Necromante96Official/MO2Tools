@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.0.7
+# Auto-Installer robusto para MO2Tools v0.0.8
 import os
 import queue
 import time
