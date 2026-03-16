@@ -9,14 +9,19 @@ class MO2ToolsDialog(QDialog):
     def __init__(self, plugin=None, parent=None):
         super().__init__(parent)
         self._plugin = plugin
-        self.setWindowTitle("MO2Tools v0.0.5 - Painel Profissional")
-        self.setMinimumSize(560, 340)
+        self.setWindowTitle("MO2Tools v0.0.6 - Premium Control Panel")
+        self.setMinimumSize(620, 390)
         self.setStyleSheet(
-            "QDialog { background: #10131a; }"
+            "QDialog {"
+            "  background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #0e1424, stop:0.55 #0b1220, stop:1 #101826);"
+            "}"
             "QLabel { color: #e6edf3; font-size: 12px; }"
-            "QPushButton { background: #1f6feb; color: white; border: none; padding: 8px 14px; border-radius: 6px; }"
-            "QPushButton:hover { background: #388bfd; }"
-            "QFrame#card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; }"
+            "QLabel#title { font-size: 28px; font-weight: 800; color: #7cc4ff; }"
+            "QLabel#subtitle { color: #9fb3c8; font-size: 13px; }"
+            "QLabel#badge { background: #163356; color: #8ed0ff; border: 1px solid #245a93; border-radius: 10px; padding: 3px 10px; font-weight: 700; }"
+            "QPushButton { background: #2f81f7; color: white; border: 1px solid #5aa2ff; padding: 8px 14px; border-radius: 8px; font-weight: 600; }"
+            "QPushButton:hover { background: #4b91f2; }"
+            "QFrame#card { background: rgba(16, 24, 36, 0.92); border: 1px solid #2f3e55; border-radius: 12px; }"
         )
 
         layout = QVBoxLayout(self)
@@ -24,13 +29,19 @@ class MO2ToolsDialog(QDialog):
         layout.setSpacing(12)
 
         title = QLabel("MO2Tools")
-        title.setStyleSheet(
-            "font-size: 24px; font-weight: 700; color: #58a6ff;")
+        title.setObjectName("title")
         layout.addWidget(title)
 
-        subtitle = QLabel("Automação profissional para Mod Organizer 2")
-        subtitle.setStyleSheet("color: #8b949e; font-size: 13px;")
+        subtitle = QLabel("Automação premium para Mod Organizer 2")
+        subtitle.setObjectName("subtitle")
         layout.addWidget(subtitle)
+
+        badge_row = QHBoxLayout()
+        badge = QLabel("v0.0.6")
+        badge.setObjectName("badge")
+        badge_row.addWidget(badge)
+        badge_row.addStretch()
+        layout.addLayout(badge_row)
 
         info_card = QFrame()
         info_card.setObjectName("card")
@@ -38,21 +49,30 @@ class MO2ToolsDialog(QDialog):
         info_layout.setContentsMargins(12, 12, 12, 12)
         info_layout.setSpacing(8)
 
-        info_layout.addWidget(QLabel("Versão: 0.0.5"))
+        info_layout.addWidget(QLabel("Versão: 0.0.6"))
         info_layout.addWidget(QLabel("Desenvolvido por: Necromante96Official"))
         info_layout.addWidget(QLabel("Plugin: MO2Tools"))
         info_layout.addWidget(
-            QLabel("Objetivo: instalar mods automaticamente com precisão e segurança"))
+            QLabel("Objetivo: instalação automática de mods com precisão operacional"))
 
         features = QLabel(
-            "Recursos ativos:\n"
+            "Recursos premium:\n"
             "- Auto Install com fila e deduplicação\n"
             "- Fast Install com seleção automática\n"
             "- Auto Replace em conflitos\n"
-            "- Limpeza inteligente de nome do mod"
+            "- Sanitização e capitalização inteligente do nome do mod\n"
+            "- Exclusão definitiva dos downloads após instalação"
         )
         features.setStyleSheet("color: #c9d1d9;")
         info_layout.addWidget(features)
+
+        quality = QLabel(
+            "Nível de Qualidade: Premium\n"
+            "Precisão operacional: alta\n"
+            "Compatibilidade: PyQt5/PyQt6"
+        )
+        quality.setStyleSheet("color: #9dd6ff;")
+        info_layout.addWidget(quality)
 
         status = self._build_status_label()
         status.setStyleSheet("color: #79c0ff; font-weight: 600;")
@@ -98,10 +118,14 @@ class MO2ToolsDialog(QDialog):
         fast_install = _read_bool("fastInstall", True)
         auto_replace = _read_bool("autoReplace", True)
         sanitize_name = _read_bool("sanitizeModName", True)
+        title_case_name = _read_bool("titleCaseModName", True)
+        delete_after_install = _read_bool("deleteDownloadAfterInstall", True)
+        delete_sidecars = _read_bool("deleteDownloadSidecars", True)
 
         return QLabel(
             "Status técnico: "
             f"enabled={enabled} | autoInstall={auto_install} | "
             f"fastInstall={fast_install} | autoReplace={auto_replace} | "
-            f"sanitizeModName={sanitize_name}"
+            f"sanitizeModName={sanitize_name} | titleCaseModName={title_case_name} | "
+            f"deleteAfterInstall={delete_after_install} | deleteSidecars={delete_sidecars}"
         )

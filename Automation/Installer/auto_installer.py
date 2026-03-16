@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.0.5
+# Auto-Installer robusto para MO2Tools v0.0.6
 import os
 import queue
 import time
@@ -61,6 +61,49 @@ def _sanitize_mod_name_from_archive(archive_path: str) -> str:
     return name
 
 
+def _title_case_mod_name(name: str) -> str:
+    known_tokens = {
+        "smapi": "SMAPI",
+        "api": "API",
+        "ui": "UI",
+        "dll": "DLL",
+    }
+    known_phrases = {
+        "content patcher": "Content Patcher",
+    }
+
+    normalized = (name or "").strip()
+    if not normalized:
+        return "Mod"
+
+    phrase_key = normalized.lower()
+    if phrase_key in known_phrases:
+        return known_phrases[phrase_key]
+
+    words: List[str] = []
+    for token in normalized.split(" "):
+        clean = token.strip()
+        if not clean:
+            continue
+
+        lowered = clean.lower()
+        if lowered in known_tokens:
+            words.append(known_tokens[lowered])
+            continue
+
+        if clean.isupper():
+            words.append(clean)
+            continue
+
+        if any(ch.isdigit() for ch in clean):
+            words.append(clean)
+            continue
+
+        words.append(clean[:1].upper() + clean[1:].lower())
+
+    return " ".join(words) if words else "Mod"
+
+
 class EnhancedAutoInstaller:
     def __init__(self, organizer: Any) -> None:
         self._organizer = organizer
@@ -73,6 +116,7 @@ class EnhancedAutoInstaller:
         self._inflight_install_paths: Set[str] = set()
         self._recent_install_paths: Dict[str, float] = {}
         self._recent_download_ids: Dict[int, float] = {}
+        self._download_id_by_path: Dict[str, int] = {}
         self._installed_events_by_path: Dict[str, float] = {}
         self._installed_events_by_name: Dict[str, float] = {}
 
@@ -148,6 +192,8 @@ class EnhancedAutoInstaller:
             _logger.info(
                 f"Download ignorado (extensão não suportada): {archive_path}")
             return
+
+        self._download_id_by_path[_norm_path(archive_path)] = int(download_id)
 
         if not self._enqueue_install_path(archive_path):
             return
@@ -268,6 +314,8 @@ class EnhancedAutoInstaller:
                             archive_path,
                             "Falha no fluxo automático; necessário confirmar manualmente.",
                         )
+                    elif self._get_bool("deleteDownloadAfterInstall", True):
+                        self._cleanup_download_artifacts(archive_path)
                 except Exception as exc:
                     _logger.error(f"Falha ao instalar '{archive_path}': {exc}")
                     self._queue_manual_install(
@@ -324,10 +372,13 @@ class EnhancedAutoInstaller:
         installed_mod = None
         try:
             sanitize_name = self._get_bool("sanitizeModName", True)
+            title_case_name = self._get_bool("titleCaseModName", True)
             base_name = _sanitize_mod_name_from_archive(
                 archive_path) if sanitize_name else os.path.splitext(os.path.basename(archive_path))[0]
+            if title_case_name:
+                base_name = _title_case_mod_name(base_name)
             _logger.info(
-                f"Nome de instalação calculado: '{base_name}' (sanitize={sanitize_name})")
+                f"Nome de instalação calculado: '{base_name}' (sanitize={sanitize_name}, titleCase={title_case_name})")
 
             try:
                 installed_mod = self._organizer.installMod(
@@ -354,6 +405,114 @@ class EnhancedAutoInstaller:
             return True
 
         return self._was_archive_installed_recently(archive_path, started_at - 0.5)
+
+    def _cleanup_download_artifacts(self, archive_path: str) -> None:
+        normalized = _norm_path(archive_path)
+        download_id = self._download_id_by_path.get(normalized)
+
+        removed_via_manager = False
+        if download_id is not None and self._download_manager is not None:
+            removed_via_manager = self._remove_download_via_manager(
+                download_id)
+
+        removed_files = 0
+        errors: List[str] = []
+        for candidate in self._build_cleanup_candidates(archive_path):
+            if not os.path.exists(candidate):
+                continue
+            ok, err = self._safe_delete_file(candidate)
+            if ok:
+                removed_files += 1
+            elif err:
+                errors.append(err)
+
+        if removed_via_manager or removed_files > 0:
+            _logger.info(
+                f"Limpeza pós-instalação concluída para '{archive_path}' (manager={removed_via_manager}, files={removed_files})"
+            )
+        elif errors:
+            _logger.warning(
+                f"Falha parcial ao limpar download '{archive_path}': {' | '.join(errors[:3])}"
+            )
+
+        self._download_id_by_path.pop(normalized, None)
+
+    def _build_cleanup_candidates(self, archive_path: str) -> List[str]:
+        candidates = [archive_path]
+
+        if self._get_bool("deleteDownloadSidecars", True):
+            sidecars = [
+                archive_path + ".meta",
+                archive_path + ".nxm",
+                archive_path + ".json",
+                archive_path + ".download",
+                archive_path + ".tmp",
+            ]
+            base_no_ext = os.path.splitext(archive_path)[0]
+            sidecars.extend([
+                base_no_ext + ".meta",
+                base_no_ext + ".nxm",
+                base_no_ext + ".json",
+                base_no_ext + ".download",
+                base_no_ext + ".tmp",
+            ])
+            candidates.extend(sidecars)
+
+        dedup: List[str] = []
+        seen: Set[str] = set()
+        for item in candidates:
+            key = _norm_path(item)
+            if key in seen:
+                continue
+            seen.add(key)
+            dedup.append(item)
+        return dedup
+
+    def _safe_delete_file(self, path_value: str) -> (bool, Optional[str]):
+        attempts = 4
+        for idx in range(attempts):
+            try:
+                if os.path.isfile(path_value):
+                    os.remove(path_value)
+                return True, None
+            except Exception as exc:
+                if idx < attempts - 1:
+                    time.sleep(0.12)
+                    continue
+                return False, f"{os.path.basename(path_value)}: {exc}"
+        return False, None
+
+    def _remove_download_via_manager(self, download_id: int) -> bool:
+        if self._download_manager is None:
+            return False
+
+        method_candidates = [
+            "removeDownload",
+            "deleteDownload",
+            "removeFile",
+            "remove",
+        ]
+
+        for method_name in method_candidates:
+            method = getattr(self._download_manager, method_name, None)
+            if method is None or not callable(method):
+                continue
+
+            attempts = [
+                (download_id, True),
+                (download_id, False),
+                (download_id,),
+            ]
+            for args in attempts:
+                try:
+                    method(*args)
+                    return True
+                except TypeError:
+                    continue
+                except Exception:
+                    continue
+
+        return False
 
     def _start_install_assistant(
         self,

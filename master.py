@@ -44,7 +44,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(0, 0, 5, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(0, 0, 6, mobase.ReleaseType.FINAL)
 
     def isActive(self) -> bool:
         return True
@@ -61,7 +61,13 @@ class MO2ToolsMaster(mobase.IPluginTool):
             mobase.PluginSetting(
                 "sanitizeModName", "Limpar nome automático do mod (sem versão/código Nexus)", True),
             mobase.PluginSetting(
+                "titleCaseModName", "Capitalizar nome do mod automaticamente (ex.: Content Patcher)", True),
+            mobase.PluginSetting(
                 "strictArchiveCheck", "Instalar automaticamente apenas arquivos de mod suportados", True),
+            mobase.PluginSetting(
+                "deleteDownloadAfterInstall", "Excluir download após instalação concluída", True),
+            mobase.PluginSetting(
+                "deleteDownloadSidecars", "Excluir metadados/arquivos auxiliares do download", True),
         ]
 
     def display(self) -> None:
