@@ -44,7 +44,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(0, 0, 6, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(0, 0, 7, mobase.ReleaseType.FINAL)
 
     def isActive(self) -> bool:
         return True
