@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.7
+# Auto-Installer robusto para MO2Tools v0.1.8
 import os
 import queue
 import time
@@ -705,6 +705,8 @@ class EnhancedAutoInstaller:
                                now, self._download_dedupe_ttl_seconds)
 
         signature = f"{int(download_id)}|{_norm_path(archive_path)}"
+        _logger.debug(
+            "Verificando assinatura de dedupe de evento | signature=%s", signature)
 
         if signature in self._recent_download_event_signatures:
             return True
