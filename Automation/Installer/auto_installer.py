@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.0.9
+# Auto-Installer robusto para MO2Tools v0.1.0
 import os
 import queue
 import time
@@ -183,7 +183,7 @@ class EnhancedAutoInstaller:
             return
 
         archive_path = str(archive_path)
-        if not self._wait_for_archive_path(archive_path, timeout_seconds=4.0):
+        if not self._wait_for_archive_path(archive_path, timeout_seconds=25.0):
             _logger.warning(
                 f"Arquivo de download não ficou disponível a tempo: {archive_path}")
             return
@@ -228,7 +228,7 @@ class EnhancedAutoInstaller:
             return False
 
         self._pending_install_paths.add(normalized)
-        self._install_queue.put(normalized)
+        self._install_queue.put(archive_path)
         return True
 
     def _mark_recent_install(self, archive_path: str) -> None:
@@ -236,11 +236,29 @@ class EnhancedAutoInstaller:
 
     def _wait_for_archive_path(self, archive_path: str, timeout_seconds: float) -> bool:
         deadline = time.time() + max(0.2, timeout_seconds)
+        last_size: Optional[int] = None
+        stable_reads = 0
+
         while time.time() < deadline:
             if os.path.isfile(archive_path):
-                return True
+                try:
+                    current_size = os.path.getsize(archive_path)
+                except Exception:
+                    current_size = None
+
+                if current_size is not None and current_size > 0:
+                    if last_size == current_size:
+                        stable_reads += 1
+                    else:
+                        stable_reads = 0
+                    last_size = current_size
+
+                    # Considera pronto quando o tamanho estabiliza por alguns ciclos.
+                    if stable_reads >= 3:
+                        return True
             time.sleep(0.08)
-        return os.path.isfile(archive_path)
+
+        return os.path.isfile(archive_path) and (last_size or 0) > 0
 
     def _is_supported_archive(self, archive_path: str) -> bool:
         valid_suffixes = (".7z", ".zip", ".rar", ".fomod", ".omod")
@@ -299,7 +317,8 @@ class EnhancedAutoInstaller:
         self._installing = True
         try:
             while not self._install_queue.empty():
-                archive_path = self._install_queue.get()
+                queued_archive_path = self._install_queue.get()
+                archive_path = str(queued_archive_path)
                 normalized = _norm_path(archive_path)
 
                 if normalized in self._inflight_install_paths:
@@ -401,10 +420,19 @@ class EnhancedAutoInstaller:
         finally:
             self._stop_install_assistant(timer)
 
-        if installed_mod is not None:
+        if self._is_successful_install_result(installed_mod):
             return True
 
         return self._was_archive_installed_recently(archive_path, started_at - 0.5)
+
+    def _is_successful_install_result(self, install_result: Any) -> bool:
+        if install_result is None:
+            return False
+        if isinstance(install_result, bool):
+            return install_result
+        if isinstance(install_result, int):
+            return install_result != 0
+        return True
 
     def _cleanup_download_artifacts(self, archive_path: str) -> None:
         normalized = _norm_path(archive_path)
