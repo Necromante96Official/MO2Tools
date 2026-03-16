@@ -1,7 +1,10 @@
 import mobase
-from PyQt6.QtCore import QCoreApplication
-from PyQt6.QtGui import QIcon
 import os
+
+try:
+    from PyQt6.QtGui import QIcon
+except ImportError:
+    from PyQt5.QtGui import QIcon
 
 
 class MO2ToolsMaster(mobase.IPluginTool):
@@ -50,7 +53,11 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return [
             mobase.PluginSetting("enabled", "Habilitar MO2Tools", True),
             mobase.PluginSetting(
-                "autoInstall", "Instalação Automática Ultra Mejorada", True),
+                "autoInstall", "Instalação Automática ao concluir download", True),
+            mobase.PluginSetting(
+                "fastInstall", "Selecionar instalação rápida automaticamente", True),
+            mobase.PluginSetting(
+                "autoReplace", "Substituir automaticamente quando mod já existir", True),
         ]
 
     def display(self) -> None:
