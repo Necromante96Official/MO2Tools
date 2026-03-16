@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.3
+# Auto-Installer robusto para MO2Tools v0.1.4
 import os
 import queue
 import time
@@ -149,6 +149,7 @@ class EnhancedAutoInstaller:
 
         self._install_queue: "queue.Queue[str]" = queue.Queue()
         self._installing = False
+        self._queue_reprocess_requested = False
 
         self._pending_install_paths: Set[str] = set()
         self._inflight_install_paths: Set[str] = set()
@@ -471,10 +472,16 @@ class EnhancedAutoInstaller:
 
     def _process_install_queue(self) -> None:
         if self._installing:
+            self._queue_reprocess_requested = True
+            _logger.debug(
+                "Processamento da fila adiado: instalacao em andamento | pendingApprox=%s",
+                self._install_queue.qsize(),
+            )
             return
         if not self._organizer:
             return
 
+        self._queue_reprocess_requested = False
         self._installing = True
         try:
             while not self._install_queue.empty():
@@ -524,6 +531,13 @@ class EnhancedAutoInstaller:
         finally:
             self._installing = False
             self._flush_manual_install_notice()
+            if self._queue_reprocess_requested or not self._install_queue.empty():
+                self._queue_reprocess_requested = False
+                _logger.debug(
+                    "Reagendando processamento da fila | pendingApprox=%s",
+                    self._install_queue.qsize(),
+                )
+                QTimer.singleShot(120, self._process_install_queue)
 
     def _install_archive(self, archive_path: str) -> bool:
         if not self._organizer:
