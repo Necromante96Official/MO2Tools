@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.5
+# Auto-Installer robusto para MO2Tools v0.1.6
 import os
 import queue
 import time
@@ -182,6 +182,7 @@ class EnhancedAutoInstaller:
         self._inflight_started_at: Dict[str, float] = {}
         self._recent_install_tokens: Dict[str,
                                           Tuple[Optional[int], float]] = {}
+        self._cancelled_paths: Set[str] = set()
         self._last_maintenance_log_at = 0.0
         self._consecutive_failure_count = 0
 
@@ -210,6 +211,9 @@ class EnhancedAutoInstaller:
         self._maintenance_timer: Optional[QTimer] = None
 
         self._download_hook_registered = False
+        self._download_failed_hook_registered = False
+        self._download_removed_hook_registered = False
+        self._download_paused_hook_registered = False
         _logger.info(
             "Inicializando AutoInstaller | log=%s | hasOrganizer=%s | hasDownloadManager=%s",
             self._log_file_path,
@@ -224,6 +228,33 @@ class EnhancedAutoInstaller:
                 _logger.info("Hook de download registrado com sucesso.")
             except Exception as exc:
                 _logger.warning(f"Falha ao conectar onDownloadComplete: {exc}")
+
+            try:
+                self._download_manager.onDownloadFailed(
+                    self._safe_on_download_failed)
+                self._download_failed_hook_registered = True
+                _logger.info(
+                    "Hook de falha de download registrado com sucesso.")
+            except Exception as exc:
+                _logger.warning(f"Falha ao conectar onDownloadFailed: {exc}")
+
+            try:
+                self._download_manager.onDownloadRemoved(
+                    self._safe_on_download_removed)
+                self._download_removed_hook_registered = True
+                _logger.info(
+                    "Hook de remoção de download registrado com sucesso.")
+            except Exception as exc:
+                _logger.warning(f"Falha ao conectar onDownloadRemoved: {exc}")
+
+            try:
+                self._download_manager.onDownloadPaused(
+                    self._safe_on_download_paused)
+                self._download_paused_hook_registered = True
+                _logger.info(
+                    "Hook de pausa de download registrado com sucesso.")
+            except Exception as exc:
+                _logger.warning(f"Falha ao conectar onDownloadPaused: {exc}")
 
         try:
             if self._organizer:
@@ -427,6 +458,7 @@ class EnhancedAutoInstaller:
     def _force_enqueue_install_path(self, archive_path: str, download_id: Optional[int], reason: str) -> bool:
         normalized = _norm_path(archive_path)
         self._get_or_create_job_state(archive_path, download_id)
+        self._cancelled_paths.discard(normalized)
         if normalized in self._pending_install_paths or normalized in self._inflight_install_paths:
             return False
 
@@ -502,6 +534,84 @@ class EnhancedAutoInstaller:
         except Exception as exc:
             _logger.exception(
                 f"Exceção no callback de download {download_id}: {exc}")
+
+    def _safe_on_download_failed(self, download_id: int) -> None:
+        try:
+            self._on_download_failed(download_id)
+        except Exception as exc:
+            _logger.exception(
+                f"Exceção no callback de falha de download {download_id}: {exc}")
+
+    def _safe_on_download_removed(self, download_id: int) -> None:
+        try:
+            self._on_download_removed(download_id)
+        except Exception as exc:
+            _logger.exception(
+                f"Exceção no callback de remoção de download {download_id}: {exc}")
+
+    def _safe_on_download_paused(self, download_id: int) -> None:
+        try:
+            self._on_download_paused(download_id)
+        except Exception as exc:
+            _logger.exception(
+                f"Exceção no callback de pausa de download {download_id}: {exc}")
+
+    def _find_registered_paths_by_download_id(self, download_id: int) -> List[str]:
+        did = int(download_id)
+        matched: List[str] = []
+        for normalized_path, stored_download_id in self._download_id_by_path.items():
+            if int(stored_download_id) == did:
+                matched.append(normalized_path)
+        return matched
+
+    def _cancel_path_state(self, normalized_path: str, reason: str) -> None:
+        self._cancelled_paths.add(normalized_path)
+        self._pending_install_paths.discard(normalized_path)
+        self._inflight_install_paths.discard(normalized_path)
+        self._inflight_started_at.pop(normalized_path, None)
+        self._recent_install_tokens.pop(normalized_path, None)
+        self._download_id_by_path.pop(normalized_path, None)
+
+        state = self._job_states_by_path.get(normalized_path)
+        if state is not None:
+            state.touch("cancelled", reason)
+            _logger.info(
+                "Estado do job cancelado | path=%s | reason=%s",
+                state.archive_path,
+                reason,
+            )
+
+    def _on_download_failed(self, download_id: int) -> None:
+        did = int(download_id)
+        self._download_retry_counts.pop(did, None)
+        paths = self._find_registered_paths_by_download_id(did)
+        if not paths:
+            _logger.warning(
+                "Download falhou sem caminho registrado | id=%s", did)
+            return
+
+        for normalized_path in paths:
+            self._cancel_path_state(normalized_path, "Download falhou")
+            _logger.warning(
+                "Download marcado como falho | id=%s | path=%s", did, normalized_path)
+
+    def _on_download_removed(self, download_id: int) -> None:
+        did = int(download_id)
+        self._download_retry_counts.pop(did, None)
+        paths = self._find_registered_paths_by_download_id(did)
+        if not paths:
+            _logger.info(
+                "Download removido sem caminho registrado | id=%s", did)
+            return
+
+        for normalized_path in paths:
+            self._cancel_path_state(normalized_path, "Download removido")
+            _logger.info(
+                "Download removido do controle de instalação | id=%s | path=%s", did, normalized_path)
+
+    def _on_download_paused(self, download_id: int) -> None:
+        did = int(download_id)
+        _logger.info("Download pausado | id=%s", did)
 
     def _on_download_complete(self, download_id: int) -> None:
         self._try_handle_download_complete(download_id, dedupe_event=True)
@@ -613,6 +723,7 @@ class EnhancedAutoInstaller:
         normalized = _norm_path(archive_path)
         now = time.time()
         self._get_or_create_job_state(archive_path, download_id)
+        self._cancelled_paths.discard(normalized)
 
         self._prune_recent_map(self._recent_install_paths,
                                now, self._install_dedupe_ttl_seconds)
@@ -775,6 +886,14 @@ class EnhancedAutoInstaller:
                 queued_archive_path = self._install_queue.get()
                 archive_path = str(queued_archive_path)
                 normalized = _norm_path(archive_path)
+
+                if normalized in self._cancelled_paths:
+                    _logger.debug(
+                        "Entrada descartada por cancelamento/remoção | path=%s",
+                        archive_path,
+                    )
+                    continue
+
                 state = self._get_or_create_job_state(
                     archive_path,
                     self._download_id_by_path.get(normalized),
