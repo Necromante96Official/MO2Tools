@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.1
+# Auto-Installer robusto para MO2Tools v0.1.2
 import os
 import queue
 import time
@@ -117,6 +117,7 @@ class EnhancedAutoInstaller:
         self._inflight_install_paths: Set[str] = set()
         self._recent_install_paths: Dict[str, float] = {}
         self._recent_download_ids: Dict[int, float] = {}
+        self._download_retry_counts: Dict[int, int] = {}
         self._download_id_by_path: Dict[str, int] = {}
         self._installed_events_by_path: Dict[str, float] = {}
         self._installed_events_by_name: Dict[str, float] = {}
@@ -124,6 +125,7 @@ class EnhancedAutoInstaller:
         self._install_dedupe_ttl_seconds = 240.0
         self._download_dedupe_ttl_seconds = 360.0
         self._installed_event_ttl_seconds = 600.0
+        self._download_retry_delay_ms_base = 1200
 
         self._active_dialog_timers: List[QTimer] = []
         self._manual_install_items: List[Dict[str, str]] = []
@@ -132,7 +134,7 @@ class EnhancedAutoInstaller:
         if self._download_manager:
             try:
                 self._download_manager.onDownloadComplete(
-                    self._on_download_complete)
+                    self._safe_on_download_complete)
                 self._download_hook_registered = True
                 _logger.info("Hook de download registrado com sucesso.")
             except Exception as exc:
@@ -162,7 +164,31 @@ class EnhancedAutoInstaller:
             return value.strip().lower() in {"1", "true", "yes", "on", "sim"}
         return default
 
+    def _get_int(self, key: str, default: int) -> int:
+        if not self._organizer:
+            return default
+        try:
+            value = self._organizer.pluginSetting("MO2Tools", key)
+        except Exception:
+            return default
+
+        try:
+            parsed = int(value)
+            return parsed if parsed > 0 else default
+        except Exception:
+            return default
+
+    def _safe_on_download_complete(self, download_id: int) -> None:
+        try:
+            self._on_download_complete(download_id)
+        except Exception as exc:
+            _logger.error(
+                f"Exceção no callback de download {download_id}: {exc}")
+
     def _on_download_complete(self, download_id: int) -> None:
+        self._try_handle_download_complete(download_id, dedupe_event=True)
+
+    def _try_handle_download_complete(self, download_id: int, dedupe_event: bool) -> None:
         if not self._get_bool("enabled", True):
             return
         if not self._get_bool("autoInstall", True):
@@ -170,7 +196,7 @@ class EnhancedAutoInstaller:
         if not self._download_manager:
             return
 
-        if self._is_duplicate_download_event(download_id):
+        if dedupe_event and self._is_duplicate_download_event(download_id):
             return
 
         try:
@@ -178,23 +204,32 @@ class EnhancedAutoInstaller:
         except Exception as exc:
             _logger.warning(
                 f"Falha ao obter caminho do download {download_id}: {exc}")
+            self._schedule_download_retry(
+                int(download_id), "Falha ao obter caminho do download")
             return
 
         if not archive_path:
+            self._schedule_download_retry(
+                int(download_id), "Caminho de download ainda vazio")
             return
 
         archive_path = str(archive_path)
         if not self._wait_for_archive_path(archive_path, timeout_seconds=25.0):
             _logger.warning(
                 f"Arquivo de download não ficou disponível a tempo: {archive_path}")
+            self._schedule_download_retry(
+                int(download_id), "Arquivo ainda não está pronto para instalação")
             return
 
         if self._get_bool("strictArchiveCheck", True) and not self._is_supported_archive(archive_path):
             _logger.info(
                 f"Download ignorado (extensão não suportada): {archive_path}")
+            self._schedule_download_retry(
+                int(download_id), "Extensão temporária/inesperada no momento da leitura")
             return
 
         self._download_id_by_path[_norm_path(archive_path)] = int(download_id)
+        self._download_retry_counts.pop(int(download_id), None)
 
         if not self._enqueue_install_path(archive_path):
             return
@@ -211,6 +246,26 @@ class EnhancedAutoInstaller:
 
         self._recent_download_ids[download_id] = now
         return False
+
+    def _schedule_download_retry(self, download_id: int, reason: str) -> None:
+        max_retries = self._get_int("autoInstallRetryCount", 4)
+        attempt = int(self._download_retry_counts.get(int(download_id), 0)) + 1
+        self._download_retry_counts[int(download_id)] = attempt
+
+        if attempt > max_retries:
+            _logger.error(
+                f"Download {download_id} excedeu retentativas ({max_retries}). Último motivo: {reason}")
+            self._download_retry_counts.pop(int(download_id), None)
+            return
+
+        delay_ms = self._download_retry_delay_ms_base * attempt
+        _logger.info(
+            f"Agendando retentativa #{attempt}/{max_retries} do download {download_id} em {delay_ms}ms: {reason}")
+        QTimer.singleShot(
+            int(delay_ms),
+            lambda d=int(download_id): self._try_handle_download_complete(
+                d, dedupe_event=False),
+        )
 
     def _enqueue_install_path(self, archive_path: str) -> bool:
         normalized = _norm_path(archive_path)
@@ -376,6 +431,8 @@ class EnhancedAutoInstaller:
                 finally:
                     self._mark_recent_install(archive_path)
                     self._inflight_install_paths.discard(normalized)
+        except Exception as exc:
+            _logger.error(f"Falha inesperada no processamento da fila: {exc}")
         finally:
             self._installing = False
             self._flush_manual_install_notice()
@@ -448,6 +505,10 @@ class EnhancedAutoInstaller:
                 enable_fast_mode=enable_fast_mode,
                 enable_auto_replace=enable_auto_replace,
             )
+            event_wait_seconds = float(self._get_int(
+                "autoInstallEventWaitSeconds", 4))
+            if self._wait_for_install_event(archive_path, started_at, event_wait_seconds):
+                return True
         except Exception as exc:
             _logger.debug(
                 f"Tentativa de instalação falhou para '{archive_path}': {exc}")
@@ -467,6 +528,15 @@ class EnhancedAutoInstaller:
         if isinstance(install_result, int):
             return install_result != 0
         return True
+
+    def _wait_for_install_event(self, archive_path: str, started_at: float, max_wait_seconds: float) -> bool:
+        deadline = time.time() + max(0.6, max_wait_seconds)
+        while time.time() < deadline:
+            if self._was_archive_installed_recently(archive_path, started_at - 0.5):
+                return True
+            QApplication.processEvents()
+            time.sleep(0.12)
+        return self._was_archive_installed_recently(archive_path, started_at - 0.5)
 
     def _cleanup_download_artifacts(self, archive_path: str) -> None:
         normalized = _norm_path(archive_path)
