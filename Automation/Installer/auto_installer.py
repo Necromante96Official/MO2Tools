@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.1.6
+# Auto-Installer robusto para MO2Tools v0.1.7
 import os
 import queue
 import time
@@ -189,14 +189,14 @@ class EnhancedAutoInstaller:
         self._pending_install_paths: Set[str] = set()
         self._inflight_install_paths: Set[str] = set()
         self._recent_install_paths: Dict[str, float] = {}
-        self._recent_download_ids: Dict[int, float] = {}
+        self._recent_download_event_signatures: Dict[str, float] = {}
         self._download_retry_counts: Dict[int, int] = {}
         self._download_id_by_path: Dict[str, int] = {}
         self._installed_events_by_path: Dict[str, float] = {}
         self._installed_events_by_name: Dict[str, float] = {}
 
         self._install_dedupe_ttl_seconds = 240.0
-        self._download_dedupe_ttl_seconds = 360.0
+        self._download_dedupe_ttl_seconds = 8.0
         self._installed_event_ttl_seconds = 600.0
         self._download_retry_delay_ms_base = 1200
         self._recent_install_token_ttl_seconds = 18.0
@@ -570,6 +570,13 @@ class EnhancedAutoInstaller:
         self._inflight_install_paths.discard(normalized_path)
         self._inflight_started_at.pop(normalized_path, None)
         self._recent_install_tokens.pop(normalized_path, None)
+        stale_signatures = [
+            signature
+            for signature in self._recent_download_event_signatures
+            if signature.endswith(f"|{normalized_path}")
+        ]
+        for signature in stale_signatures:
+            self._recent_download_event_signatures.pop(signature, None)
         self._download_id_by_path.pop(normalized_path, None)
 
         state = self._job_states_by_path.get(normalized_path)
@@ -634,11 +641,6 @@ class EnhancedAutoInstaller:
             bool(dedupe_event),
         )
 
-        if dedupe_event and self._is_duplicate_download_event(download_id):
-            _logger.debug(
-                "Evento de download duplicado ignorado | id=%s", int(download_id))
-            return
-
         try:
             archive_path = self._download_manager.downloadPath(download_id)
         except Exception as exc:
@@ -654,6 +656,15 @@ class EnhancedAutoInstaller:
             return
 
         archive_path = str(archive_path)
+
+        if dedupe_event and self._is_duplicate_download_event(download_id, archive_path):
+            _logger.debug(
+                "Evento de download duplicado ignorado | id=%s | path=%s",
+                int(download_id),
+                archive_path,
+            )
+            return
+
         _logger.debug(
             "Caminho de download obtido | id=%s | path=%s",
             int(download_id),
@@ -688,15 +699,17 @@ class EnhancedAutoInstaller:
             download_id), archive_path)
         QTimer.singleShot(250, self._process_install_queue)
 
-    def _is_duplicate_download_event(self, download_id: int) -> bool:
+    def _is_duplicate_download_event(self, download_id: int, archive_path: str) -> bool:
         now = time.time()
-        self._prune_recent_map(self._recent_download_ids,
+        self._prune_recent_map(self._recent_download_event_signatures,
                                now, self._download_dedupe_ttl_seconds)
 
-        if download_id in self._recent_download_ids:
+        signature = f"{int(download_id)}|{_norm_path(archive_path)}"
+
+        if signature in self._recent_download_event_signatures:
             return True
 
-        self._recent_download_ids[download_id] = now
+        self._recent_download_event_signatures[signature] = now
         return False
 
     def _schedule_download_retry(self, download_id: int, reason: str) -> None:

@@ -11,3 +11,72 @@
 2026-03-16 11:04:49 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip' (manager=False, files=2)
 2026-03-16 11:04:56 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
 2026-03-16 11:04:56 | DEBUG | MO2Tools.Installer | Evento de download duplicado ignorado | id=0
+2026-03-16 11:08:20 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 11:08:20 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 11:08:23 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:08:23 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:08:24 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:08:24 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:08:24 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:08:24 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Horse Flute Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 11:08:25 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip | baseName=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:08:26 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | elapsed=1.82s
+2026-03-16 11:08:26 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip' (manager=False, files=2)
+2026-03-16 11:08:42 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:08:42 | DEBUG | MO2Tools.Installer | Evento de download duplicado ignorado | id=0
+2026-03-16 11:14:08 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:14:08 | DEBUG | MO2Tools.Installer | Evento de download duplicado ignorado | id=0
+2026-03-16 11:20:13 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 11:20:13 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 11:20:13 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-16 11:20:13 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-16 11:20:13 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-16 11:20:13 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-16 11:20:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:20:20 | DEBUG | MO2Tools.Installer | Processando download completo | id=1 | dedupeEvent=True
+2026-03-16 11:20:20 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=1 | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:21 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | downloadId=1 | queueApprox=1
+2026-03-16 11:20:21 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=1 | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:21 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | localAttempt=1
+2026-03-16 11:20:21 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:20:21 | INFO | MO2Tools.Installer | Nome de instalação calculado: '1 Crops Anytime Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 11:20:21 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:20:21 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=1_crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip | baseName=1_crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:23 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | elapsed=1.74s
+2026-03-16 11:20:23 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | strategyIndex=1/4
+2026-03-16 11:20:23 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/1_Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip' (manager=False, files=2)
+2026-03-16 11:20:23 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:20:25 | INFO | MO2Tools.Installer | Download removido sem caminho registrado | id=0
+2026-03-16 11:20:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:20:34 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 11:20:34 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 11:20:34 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-16 11:20:34 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-16 11:20:34 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-16 11:20:34 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-16 11:20:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:20:47 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:20:51 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:20:51 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:52 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:20:52 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:52 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | localAttempt=1
+2026-03-16 11:20:52 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:20:52 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Crops Anytime Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 11:20:53 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:20:53 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip | baseName=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:20:54 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | elapsed=1.72s
+2026-03-16 11:20:54 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | strategyIndex=1/4
+2026-03-16 11:20:54 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip' (manager=False, files=2)
+2026-03-16 11:20:54 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:21:00 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:21:04 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:21:04 | DEBUG | MO2Tools.Installer | Evento de download duplicado ignorado | id=0
+2026-03-16 11:21:13 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:21:25 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:21:38 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:21:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:22:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:22:16 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:22:25 | INFO | MO2Tools.Installer | Download removido sem caminho registrado | id=0
+2026-03-16 11:22:29 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
