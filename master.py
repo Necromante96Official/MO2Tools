@@ -25,11 +25,20 @@ class MO2ToolsMaster(mobase.IPluginTool):
     def name(self) -> str:
         return "MO2Tools"
 
+    def displayName(self) -> str:
+        return "MO2Tools"
+
+    def localizedName(self) -> str:
+        return "MO2Tools"
+
     def author(self) -> str:
         return "Necromante96Official"
 
     def description(self) -> str:
         return "Central de automação modular e avançada para MO2."
+
+    def tooltip(self) -> str:
+        return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
         return mobase.VersionInfo(0, 0, 1, mobase.ReleaseType.FINAL)

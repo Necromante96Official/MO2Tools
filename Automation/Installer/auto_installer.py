@@ -40,39 +40,56 @@ class EnhancedAutoInstaller:
 
         try:
             _logger.info(f"Iniciando instalação automática de: {archive_path}")
-            # Iniciar assistente de UI para clicar nos botões
-            timer = QTimer()
-            timer.setInterval(100)
-            timer.timeout.connect(lambda: self._scan_dialogs(timer))
-            timer.start()
 
-            # Chamar a instalação nativa do MO2
-            self._organizer.installMod(str(archive_path))
+            # 1. Obter nome base do mod (remover extensão)
+            mod_name = os.path.splitext(os.path.basename(archive_path))[0]
 
-            timer.stop()
-            _logger.info("Instalação concluída com sucesso.")
+            # 2. Iniciar assistente de UI ANTES de chamar installMod
+            self._scan_timer = QTimer()
+            self._scan_timer.setInterval(200)
+            self._scan_timer.timeout.connect(self._scan_tick)
+            self._scan_timer.start()
+
+            # 3. Chamar a instalação nativa do MO2 (Bloqueante se houver UI)
+            # Nota: No MO2 v2.4+, installMod pode exigir dois argumentos: path e name
+            try:
+                self._organizer.installMod(str(archive_path), mod_name)
+            except TypeError:
+                self._organizer.installMod(str(archive_path))
+
+            self._scan_timer.stop()
+            _logger.info(f"Fim da rotina de instalação para: {archive_path}")
         except Exception as e:
             _logger.error(f"Erro na instalação automática: {e}")
+            if hasattr(self, "_scan_timer"):
+                self._scan_timer.stop()
         finally:
             self._is_installing = False
             # Processar próximo item se houver
             if not self._install_queue.empty():
-                QTimer.singleShot(500, self._process_queue)
+                QTimer.singleShot(1000, self._process_queue)
 
-    def _scan_dialogs(self, timer):
+    def _scan_tick(self):
         # Scan de janelas ativas para automação de botões
         for widget in QApplication.topLevelWidgets():
-            if not widget.isVisible():
+            try:
+                if not widget.isVisible():
+                    continue
+
+                title = str(widget.windowTitle()).lower()
+
+                # Diálogos comuns do MO2: "Query", "Install Mod", "Mod Already Installed"
+                targets = ["instalar", "install", "repor",
+                           "replace", "ok", "confirmar", "query"]
+
+                if any(target in title for target in targets):
+                    self._automate_widget(widget)
+            except Exception:
                 continue
 
-            title = str(widget.windowTitle()).lower()
-
-            # Alvos: "Instalar", "Substituir", "OK"
-            targets = ["instalar", "install",
-                       "repor", "replace", "ok", "confirmar"]
-
-            if any(target in title for target in targets):
-                self._automate_widget(widget)
+    def _scan_dialogs(self, timer):
+        # Mantido para retrocompatibilidade, mas chamamos o tick
+        self._scan_tick()
 
     def _automate_widget(self, widget):
         # Lógica para selecionar 'Quick Install' se disponível
