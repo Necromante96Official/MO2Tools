@@ -1,9 +1,11 @@
 # UI Module Master
 try:
+    from PyQt6.QtCore import Qt
     from PyQt6.QtWidgets import (
         QCheckBox,
         QDialog,
         QFrame,
+        QGridLayout,
         QHBoxLayout,
         QLabel,
         QMessageBox,
@@ -12,10 +14,12 @@ try:
         QVBoxLayout,
     )
 except ImportError:
+    from PyQt5.QtCore import Qt
     from PyQt5.QtWidgets import (
         QCheckBox,
         QDialog,
         QFrame,
+        QGridLayout,
         QHBoxLayout,
         QLabel,
         QMessageBox,
@@ -30,139 +34,214 @@ class MO2ToolsDialog(QDialog):
         super().__init__(parent)
         self._plugin = plugin
         self._status_label = None
+        self._toggle_items = []
 
-        self.setWindowTitle("MO2Tools v0.0.8 - Premium Control Panel")
-        self.setMinimumSize(760, 520)
+        self.setWindowTitle("MO2Tools v0.0.9 - Premium Control Center")
+        self.setMinimumSize(860, 560)
         self.setStyleSheet(
             "QDialog {"
-            "  background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #0f1728, stop:0.55 #0d1423, stop:1 #111b2d);"
+            "  background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #0a1020, stop:0.4 #0f1b33, stop:1 #13233f);"
             "}"
-            "QLabel { color: #e6edf3; font-size: 12px; }"
-            "QLabel#title { font-size: 30px; font-weight: 800; color: #86ccff; }"
-            "QLabel#subtitle { color: #9fb3c8; font-size: 13px; }"
-            "QLabel#badge { background: #1a3b63; color: #9dd6ff; border: 1px solid #2a5f9b; border-radius: 10px; padding: 3px 10px; font-weight: 700; }"
-            "QPushButton { background: #2f81f7; color: white; border: 1px solid #5aa2ff; padding: 8px 14px; border-radius: 8px; font-weight: 600; }"
+            "QLabel { color: #dce7f5; font-size: 12px; }"
+            "QLabel#title { font-size: 32px; font-weight: 900; color: #8fd3ff; }"
+            "QLabel#subtitle { color: #aac6e3; font-size: 13px; }"
+            "QLabel#badge { background: #173f68; color: #9cd8ff; border: 1px solid #2e6ca8; border-radius: 10px; padding: 4px 12px; font-weight: 700; }"
+            "QLabel#sectionTitle { color: #9fd7ff; font-size: 13px; font-weight: 700; }"
+            "QLabel#pillOn { background: #123927; color: #7ef0ae; border: 1px solid #2a8f55; border-radius: 9px; padding: 2px 8px; font-weight: 700; }"
+            "QLabel#pillOff { background: #3a1717; color: #ff9c9c; border: 1px solid #8f3333; border-radius: 9px; padding: 2px 8px; font-weight: 700; }"
+            "QPushButton { background: #2f81f7; color: white; border: 1px solid #5aa2ff; padding: 9px 14px; border-radius: 8px; font-weight: 600; }"
             "QPushButton:hover { background: #4b91f2; }"
-            "QFrame#card { background: rgba(16, 24, 36, 0.94); border: 1px solid #2f3e55; border-radius: 12px; }"
-            "QCheckBox { color: #dce8f5; spacing: 8px; }"
-            "QSpinBox { background: #0f1a2e; color: #e6edf3; border: 1px solid #355275; border-radius: 6px; padding: 4px 6px; }"
+            "QFrame#card { background: rgba(10, 20, 34, 0.94); border: 1px solid #2f4666; border-radius: 14px; }"
+            "QCheckBox { color: #dce8f5; spacing: 10px; font-size: 12px; }"
+            "QCheckBox::indicator { width: 14px; height: 14px; border-radius: 7px; border: 1px solid #3f6ca0; background: #0c1a2f; }"
+            "QCheckBox::indicator:checked { background: #28a745; border: 1px solid #66d18a; }"
+            "QSpinBox { background: #0f1a2e; color: #e6edf3; border: 1px solid #355275; border-radius: 6px; padding: 4px 8px; min-width: 72px; }"
         )
 
         root = QVBoxLayout(self)
-        root.setContentsMargins(16, 16, 16, 16)
+        root.setContentsMargins(18, 18, 18, 18)
         root.setSpacing(12)
 
+        self._build_header(root)
+        self._build_body(root)
+        self._build_footer(root)
+
+        self._load_values()
+        self._refresh_live_status()
+
+    def _build_header(self, root_layout):
         title = QLabel("MO2Tools")
         title.setObjectName("title")
-        root.addWidget(title)
+        root_layout.addWidget(title)
 
-        subtitle = QLabel("Automação premium para Mod Organizer 2")
+        subtitle = QLabel("Control Center de automação para Mod Organizer 2")
         subtitle.setObjectName("subtitle")
-        root.addWidget(subtitle)
+        root_layout.addWidget(subtitle)
 
         badge_row = QHBoxLayout()
-        badge = QLabel("v0.0.8")
+        badge = QLabel("v0.0.9")
         badge.setObjectName("badge")
         badge_row.addWidget(badge)
         badge_row.addStretch()
-        root.addLayout(badge_row)
+        root_layout.addLayout(badge_row)
 
-        content_row = QHBoxLayout()
-        content_row.setSpacing(12)
-        root.addLayout(content_row)
+    def _build_body(self, root_layout):
+        grid = QGridLayout()
+        grid.setHorizontalSpacing(12)
+        grid.setVerticalSpacing(12)
+        root_layout.addLayout(grid)
 
-        info_card = QFrame()
-        info_card.setObjectName("card")
-        info_layout = QVBoxLayout(info_card)
-        info_layout.setContentsMargins(12, 12, 12, 12)
-        info_layout.setSpacing(8)
-        info_layout.addWidget(QLabel("Versão: 0.0.8"))
-        info_layout.addWidget(QLabel("Desenvolvido por: Necromante96Official"))
-        info_layout.addWidget(QLabel("Plugin: MO2Tools"))
-        info_layout.addWidget(
-            QLabel("Objetivo: automação completa de instalação e versionamento de mods"))
-        info_layout.addWidget(
+        overview_card = QFrame()
+        overview_card.setObjectName("card")
+        overview_layout = QVBoxLayout(overview_card)
+        overview_layout.setContentsMargins(12, 12, 12, 12)
+        overview_layout.setSpacing(8)
+        overview_layout.addWidget(self._section_title("Resumo"))
+        overview_layout.addWidget(QLabel("Versão: 0.0.9"))
+        overview_layout.addWidget(
+            QLabel("Desenvolvido por: Necromante96Official"))
+        overview_layout.addWidget(QLabel("Plugin: MO2Tools"))
+        overview_layout.addWidget(
+            QLabel("Escopo: Auto Install + Version Fix + limpeza pós-instalação"))
+        overview_layout.addWidget(
             QLabel(
-                "Módulos automáticos:\n"
-                "- Auto Install com fila, deduplicação e fallback de UI\n"
-                "- Version Fix automático no startup e a cada intervalo\n"
-                "- Limpeza de download pós-instalação\n"
-                "- Nome de mod sanitizado e capitalizado"
+                "Pacote de melhorias:\n"
+                "- Layout premium reorganizado\n"
+                "- Toggling dinâmico com feedback ON/OFF\n"
+                "- Reconfiguração do Version Fix em runtime\n"
+                "- Ações rápidas para execução imediata"
             )
         )
-        self._status_label = QLabel(self._build_status_text())
-        self._status_label.setStyleSheet("color: #79c0ff; font-weight: 600;")
+        self._status_label = QLabel("")
         self._status_label.setWordWrap(True)
-        info_layout.addWidget(self._status_label)
-        content_row.addWidget(info_card, 1)
+        self._status_label.setStyleSheet("color: #7fc8ff; font-weight: 600;")
+        overview_layout.addWidget(self._status_label)
+        grid.addWidget(overview_card, 0, 0)
 
-        options_card = QFrame()
-        options_card.setObjectName("card")
-        options_layout = QVBoxLayout(options_card)
-        options_layout.setContentsMargins(12, 12, 12, 12)
-        options_layout.setSpacing(8)
-        options_layout.addWidget(QLabel("Menu de Opções"))
+        install_card = QFrame()
+        install_card.setObjectName("card")
+        install_layout = QVBoxLayout(install_card)
+        install_layout.setContentsMargins(12, 12, 12, 12)
+        install_layout.setSpacing(7)
+        install_layout.addWidget(self._section_title("Auto Install"))
 
-        self.cb_enabled = QCheckBox("Habilitar MO2Tools")
-        self.cb_auto_install = QCheckBox("Ativar Auto Install")
-        self.cb_fast_install = QCheckBox("Ativar Fast Install")
-        self.cb_auto_replace = QCheckBox("Ativar Auto Replace")
-        self.cb_sanitize_name = QCheckBox(
-            "Limpar nome do mod (remove versão/código)")
-        self.cb_title_case = QCheckBox(
-            "Capitalizar nome do mod (ex.: Content Patcher)")
-        self.cb_strict_archive = QCheckBox(
-            "Aceitar apenas arquivos de mod suportados")
-        self.cb_delete_after = QCheckBox("Excluir download após instalação")
-        self.cb_delete_sidecars = QCheckBox(
-            "Excluir metadados e arquivos auxiliares")
-        self.cb_auto_version_fix = QCheckBox("Ativar Version Fix automático")
-        self.cb_refresh_after_fix = QCheckBox(
-            "Atualizar lista de mods após Version Fix")
-        self.cb_backup_meta = QCheckBox("Criar backup .bak do meta.ini")
+        self.cb_enabled, self.lb_enabled = self._add_toggle(
+            install_layout, "Habilitar MO2Tools", "enabled", True)
+        self.cb_auto_install, self.lb_auto_install = self._add_toggle(
+            install_layout, "Ativar Auto Install", "autoInstall", True)
+        self.cb_fast_install, self.lb_fast_install = self._add_toggle(
+            install_layout, "Ativar Fast Install", "fastInstall", True)
+        self.cb_auto_replace, self.lb_auto_replace = self._add_toggle(
+            install_layout, "Ativar Auto Replace", "autoReplace", True)
+        self.cb_sanitize_name, self.lb_sanitize_name = self._add_toggle(
+            install_layout, "Limpar nome do mod", "sanitizeModName", True)
+        self.cb_title_case, self.lb_title_case = self._add_toggle(
+            install_layout, "Capitalizar nome do mod", "titleCaseModName", True)
+        self.cb_strict_archive, self.lb_strict_archive = self._add_toggle(
+            install_layout, "Restringir tipos de arquivo", "strictArchiveCheck", True)
+        self.cb_delete_after, self.lb_delete_after = self._add_toggle(
+            install_layout, "Excluir download após instalar", "deleteDownloadAfterInstall", True)
+        self.cb_delete_sidecars, self.lb_delete_sidecars = self._add_toggle(
+            install_layout, "Excluir sidecars do download", "deleteDownloadSidecars", True)
 
-        for checkbox in [
-            self.cb_enabled,
-            self.cb_auto_install,
-            self.cb_fast_install,
-            self.cb_auto_replace,
-            self.cb_sanitize_name,
-            self.cb_title_case,
-            self.cb_strict_archive,
-            self.cb_delete_after,
-            self.cb_delete_sidecars,
-            self.cb_auto_version_fix,
-            self.cb_refresh_after_fix,
-            self.cb_backup_meta,
-        ]:
-            options_layout.addWidget(checkbox)
+        install_layout.addStretch()
+        grid.addWidget(install_card, 0, 1)
+
+        version_card = QFrame()
+        version_card.setObjectName("card")
+        version_layout = QVBoxLayout(version_card)
+        version_layout.setContentsMargins(12, 12, 12, 12)
+        version_layout.setSpacing(7)
+        version_layout.addWidget(self._section_title("Version Fix Automático"))
+
+        self.cb_auto_version_fix, self.lb_auto_version_fix = self._add_toggle(
+            version_layout, "Ativar Version Fix", "autoVersionFixEnabled", True)
+        self.cb_run_on_startup, self.lb_run_on_startup = self._add_toggle(
+            version_layout, "Rodar Version Fix no startup", "autoVersionFixRunOnStartup", True)
+        self.cb_refresh_after_fix, self.lb_refresh_after_fix = self._add_toggle(
+            version_layout, "Refresh após Version Fix", "autoVersionFixRefreshAfterRun", True)
+        self.cb_backup_meta, self.lb_backup_meta = self._add_toggle(
+            version_layout, "Criar backup .bak", "autoVersionFixCreateBackup", True)
 
         interval_row = QHBoxLayout()
-        interval_row.addWidget(QLabel("Intervalo do Version Fix (min):"))
+        interval_row.addWidget(QLabel("Intervalo (minutos):"))
         self.spin_interval_minutes = QSpinBox()
         self.spin_interval_minutes.setMinimum(1)
         self.spin_interval_minutes.setMaximum(120)
+        self.spin_interval_minutes.valueChanged.connect(
+            self._refresh_live_status)
         interval_row.addWidget(self.spin_interval_minutes)
         interval_row.addStretch()
-        options_layout.addLayout(interval_row)
+        version_layout.addLayout(interval_row)
 
-        options_layout.addStretch()
-        content_row.addWidget(options_card, 1)
+        action_row = QHBoxLayout()
+        self.btn_run_fix_now = QPushButton("Executar Version Fix Agora")
+        self.btn_run_fix_now.clicked.connect(self._run_version_fix_now)
+        action_row.addWidget(self.btn_run_fix_now)
+        action_row.addStretch()
+        version_layout.addLayout(action_row)
 
-        self._load_values()
+        version_layout.addStretch()
+        grid.addWidget(version_card, 1, 0, 1, 2)
 
-        buttons_row = QHBoxLayout()
-        buttons_row.addStretch()
+    def _build_footer(self, root_layout):
+        footer = QHBoxLayout()
+        footer.addStretch()
+
+        btn_default = QPushButton("Restaurar Padrões")
+        btn_default.clicked.connect(self._restore_defaults)
+        footer.addWidget(btn_default)
 
         btn_save = QPushButton("Salvar Configurações")
         btn_save.clicked.connect(self._save_values)
-        buttons_row.addWidget(btn_save)
+        footer.addWidget(btn_save)
 
         btn_close = QPushButton("Fechar")
         btn_close.clicked.connect(self.close)
-        buttons_row.addWidget(btn_close)
+        footer.addWidget(btn_close)
 
-        root.addLayout(buttons_row)
+        root_layout.addLayout(footer)
+
+    def _section_title(self, text):
+        label = QLabel(text)
+        label.setObjectName("sectionTitle")
+        return label
+
+    def _add_toggle(self, layout, label_text, setting_key, default_value):
+        row = QHBoxLayout()
+        checkbox = QCheckBox(label_text)
+        checkbox.setChecked(self._read_bool(setting_key, default_value))
+
+        pill = QLabel("")
+        pill.setAlignment(Qt.AlignmentFlag.AlignCenter if hasattr(
+            Qt, "AlignmentFlag") else Qt.AlignCenter)
+        pill.setMinimumWidth(54)
+        self._update_toggle_pill(pill, checkbox.isChecked())
+
+        checkbox.stateChanged.connect(
+            lambda _state, cb=checkbox, lb=pill: self._on_toggle_changed(cb, lb))
+
+        row.addWidget(checkbox)
+        row.addStretch()
+        row.addWidget(pill)
+
+        layout.addLayout(row)
+        self._toggle_items.append((setting_key, checkbox, pill, default_value))
+        return checkbox, pill
+
+    def _on_toggle_changed(self, checkbox, pill_label):
+        self._update_toggle_pill(pill_label, checkbox.isChecked())
+        self._refresh_live_status()
+
+    def _update_toggle_pill(self, label, is_active):
+        if is_active:
+            label.setObjectName("pillOn")
+            label.setText("ATIVO")
+        else:
+            label.setObjectName("pillOff")
+            label.setText("DESATIV")
+        label.style().unpolish(label)
+        label.style().polish(label)
 
     def _read_bool(self, setting_key, default=True):
         if not self._plugin or not getattr(self._plugin, "_organizer", None):
@@ -197,8 +276,8 @@ class MO2ToolsDialog(QDialog):
             raw = default
 
         try:
-            value = int(raw)
-            return value if value > 0 else default
+            parsed = int(raw)
+            return parsed if parsed > 0 else default
         except Exception:
             return default
 
@@ -212,83 +291,105 @@ class MO2ToolsDialog(QDialog):
             pass
 
     def _load_values(self):
-        self.cb_enabled.setChecked(self._read_bool("enabled", True))
-        self.cb_auto_install.setChecked(self._read_bool("autoInstall", True))
-        self.cb_fast_install.setChecked(self._read_bool("fastInstall", True))
-        self.cb_auto_replace.setChecked(self._read_bool("autoReplace", True))
-        self.cb_sanitize_name.setChecked(
-            self._read_bool("sanitizeModName", True))
-        self.cb_title_case.setChecked(
-            self._read_bool("titleCaseModName", True))
-        self.cb_strict_archive.setChecked(
-            self._read_bool("strictArchiveCheck", True))
-        self.cb_delete_after.setChecked(
-            self._read_bool("deleteDownloadAfterInstall", True))
-        self.cb_delete_sidecars.setChecked(
-            self._read_bool("deleteDownloadSidecars", True))
-        self.cb_auto_version_fix.setChecked(
-            self._read_bool("autoVersionFixEnabled", True))
-        self.cb_refresh_after_fix.setChecked(
-            self._read_bool("autoVersionFixRefreshAfterRun", True))
-        self.cb_backup_meta.setChecked(
-            self._read_bool("autoVersionFixCreateBackup", True))
+        for setting_key, checkbox, pill, default_value in self._toggle_items:
+            checkbox.setChecked(self._read_bool(setting_key, default_value))
+            self._update_toggle_pill(pill, checkbox.isChecked())
+
         self.spin_interval_minutes.setValue(
             self._read_int("autoVersionFixIntervalMinutes", 10))
 
+    def _restore_defaults(self):
+        defaults = {
+            "enabled": True,
+            "autoInstall": True,
+            "fastInstall": True,
+            "autoReplace": True,
+            "sanitizeModName": True,
+            "titleCaseModName": True,
+            "strictArchiveCheck": True,
+            "deleteDownloadAfterInstall": True,
+            "deleteDownloadSidecars": True,
+            "autoVersionFixEnabled": True,
+            "autoVersionFixRunOnStartup": True,
+            "autoVersionFixRefreshAfterRun": True,
+            "autoVersionFixCreateBackup": True,
+        }
+
+        for setting_key, checkbox, pill, default_value in self._toggle_items:
+            target = defaults.get(setting_key, default_value)
+            checkbox.setChecked(target)
+            self._update_toggle_pill(pill, target)
+
+        self.spin_interval_minutes.setValue(10)
+        self._refresh_live_status()
+
     def _save_values(self):
-        self._set_setting("enabled", self.cb_enabled.isChecked())
-        self._set_setting("autoInstall", self.cb_auto_install.isChecked())
-        self._set_setting("fastInstall", self.cb_fast_install.isChecked())
-        self._set_setting("autoReplace", self.cb_auto_replace.isChecked())
-        self._set_setting("sanitizeModName", self.cb_sanitize_name.isChecked())
-        self._set_setting("titleCaseModName", self.cb_title_case.isChecked())
-        self._set_setting("strictArchiveCheck",
-                          self.cb_strict_archive.isChecked())
-        self._set_setting("deleteDownloadAfterInstall",
-                          self.cb_delete_after.isChecked())
-        self._set_setting("deleteDownloadSidecars",
-                          self.cb_delete_sidecars.isChecked())
-        self._set_setting("autoVersionFixEnabled",
-                          self.cb_auto_version_fix.isChecked())
-        self._set_setting("autoVersionFixRefreshAfterRun",
-                          self.cb_refresh_after_fix.isChecked())
-        self._set_setting("autoVersionFixCreateBackup",
-                          self.cb_backup_meta.isChecked())
+        for setting_key, checkbox, _pill, _default_value in self._toggle_items:
+            self._set_setting(setting_key, checkbox.isChecked())
+
         self._set_setting("autoVersionFixIntervalMinutes",
                           int(self.spin_interval_minutes.value()))
 
-        if self._status_label is not None:
-            self._status_label.setText(self._build_status_text())
+        self._apply_runtime_updates()
+        self._refresh_live_status()
 
         QMessageBox.information(
             self,
             "MO2Tools",
-            "Configurações salvas. Reinicie o MO2 para reaplicar o agendamento do Version Fix.",
+            "Configurações aplicadas com sucesso.",
         )
 
-    def _build_status_text(self):
-        if not self._plugin or not getattr(self._plugin, "_organizer", None):
-            return "Status: aguardando contexto do MO2"
+    def _apply_runtime_updates(self):
+        if not self._plugin:
+            return
 
-        enabled = self._read_bool("enabled", True)
-        auto_install = self._read_bool("autoInstall", True)
-        fast_install = self._read_bool("fastInstall", True)
-        auto_replace = self._read_bool("autoReplace", True)
-        sanitize_name = self._read_bool("sanitizeModName", True)
-        title_case_name = self._read_bool("titleCaseModName", True)
-        strict_archive = self._read_bool("strictArchiveCheck", True)
-        delete_after_install = self._read_bool(
-            "deleteDownloadAfterInstall", True)
-        delete_sidecars = self._read_bool("deleteDownloadSidecars", True)
-        auto_version_fix = self._read_bool("autoVersionFixEnabled", True)
-        version_fix_interval = self._read_int(
-            "autoVersionFixIntervalMinutes", 10)
+        core = getattr(self._plugin, "core", None)
+        version_sync = getattr(core, "version_sync",
+                               None) if core is not None else None
+        if version_sync is None:
+            return
 
-        return (
-            "Status técnico: "
-            f"enabled={enabled} | autoInstall={auto_install} | fastInstall={fast_install} | "
-            f"autoReplace={auto_replace} | sanitizeModName={sanitize_name} | "
-            f"titleCaseModName={title_case_name} | strictArchiveCheck={strict_archive} | "
-            f"deleteAfterInstall={delete_after_install} | deleteSidecars={delete_sidecars} | "
-            f"autoVersionFix={auto_version_fix} | interval={version_fix_interval}min"
+        try:
+            version_sync.reload_from_settings()
+        except Exception:
+            pass
+
+    def _run_version_fix_now(self):
+        if not self._plugin:
+            return
+
+        core = getattr(self._plugin, "core", None)
+        version_sync = getattr(core, "version_sync",
+                               None) if core is not None else None
+        if version_sync is None:
+            QMessageBox.warning(
+                self, "MO2Tools", "Módulo de Version Fix não disponível.")
+            return
+
+        try:
+            version_sync.trigger_now()
+            QMessageBox.information(
+                self, "MO2Tools", "Version Fix executado manualmente.")
+        except Exception as exc:
+            QMessageBox.warning(
+                self, "MO2Tools", f"Falha ao executar Version Fix: {exc}")
+
+    def _refresh_live_status(self):
+        if self._status_label is None:
+            return
+
+        state = {
+            setting_key: checkbox.isChecked()
+            for setting_key, checkbox, _pill, _default in self._toggle_items
+        }
+
+        self._status_label.setText(
+            "Status Live: "
+            f"enabled={state.get('enabled')} | autoInstall={state.get('autoInstall')} | "
+            f"fastInstall={state.get('fastInstall')} | autoReplace={state.get('autoReplace')} | "
+            f"sanitize={state.get('sanitizeModName')} | titleCase={state.get('titleCaseModName')} | "
+            f"strictArchive={state.get('strictArchiveCheck')} | deleteDownload={state.get('deleteDownloadAfterInstall')} | "
+            f"deleteSidecars={state.get('deleteDownloadSidecars')} | autoVersionFix={state.get('autoVersionFixEnabled')} | "
+            f"runOnStartup={state.get('autoVersionFixRunOnStartup')} | refreshAfterFix={state.get('autoVersionFixRefreshAfterRun')} | "
+            f"backupMeta={state.get('autoVersionFixCreateBackup')} | interval={int(self.spin_interval_minutes.value())}min"
         )

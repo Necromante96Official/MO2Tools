@@ -44,7 +44,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(0, 0, 8, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(0, 0, 9, mobase.ReleaseType.FINAL)
 
     def isActive(self) -> bool:
         return True
@@ -70,6 +70,8 @@ class MO2ToolsMaster(mobase.IPluginTool):
                 "deleteDownloadSidecars", "Excluir metadados/arquivos auxiliares do download", True),
             mobase.PluginSetting(
                 "autoVersionFixEnabled", "Corrigir versões automaticamente no startup e a cada intervalo", True),
+            mobase.PluginSetting(
+                "autoVersionFixRunOnStartup", "Executar version fix ao iniciar o MO2", True),
             mobase.PluginSetting(
                 "autoVersionFixIntervalMinutes", "Intervalo em minutos do version fix automático", 10),
             mobase.PluginSetting(

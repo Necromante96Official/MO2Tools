@@ -39,8 +39,9 @@ class AutoVersionSync:
 
         self._setup_timer()
 
-        # Roda uma vez no startup do MO2 para correção imediata.
-        QTimer.singleShot(1500, self.run_once)
+        if self._get_bool("autoVersionFixRunOnStartup", True):
+            # Roda uma vez no startup do MO2 para correção imediata.
+            QTimer.singleShot(1500, self.run_once)
 
     def _read_setting(self, key: str, default: Any) -> Any:
         if not self._organizer:
@@ -70,11 +71,24 @@ class AutoVersionSync:
             return default
 
     def _setup_timer(self) -> None:
+        if self._timer is not None:
+            try:
+                self._timer.stop()
+                self._timer.deleteLater()
+            except Exception:
+                pass
+
         interval_minutes = self._get_int("autoVersionFixIntervalMinutes", 10)
         self._timer = QTimer()
         self._timer.setInterval(max(1, interval_minutes) * 60 * 1000)
         self._timer.timeout.connect(self.run_once)
         self._timer.start()
+
+    def reload_from_settings(self) -> None:
+        self._setup_timer()
+
+    def trigger_now(self) -> None:
+        self.run_once()
 
     def run_once(self) -> None:
         if not self._get_bool("enabled", True):
