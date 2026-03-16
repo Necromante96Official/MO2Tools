@@ -1,8 +1,9 @@
-# Auto-Installer robusto para MO2Tools v0.0.1
+# Auto-Installer robusto para MO2Tools v0.0.5
 import os
 import queue
 import time
 import logging
+import re
 from typing import Any, Dict, List, Optional, Set
 
 try:
@@ -34,6 +35,30 @@ _logger.setLevel(logging.DEBUG)
 
 def _norm_path(path_value: str) -> str:
     return os.path.normcase(os.path.normpath(str(path_value).strip()))
+
+
+def _sanitize_mod_name_from_archive(archive_path: str) -> str:
+    name = os.path.splitext(os.path.basename(archive_path))[0]
+
+    # Remove sufixo de metadados do Nexus (ex.: -1915-2-9-1-1773542770)
+    name = re.sub(r"[-_]?\d+(?:[-_]\d+){2,}$", "", name)
+
+    # Remove versões no padrão semântico (ex.: 2.9.1, v1.4.3, 1-2-0)
+    name = re.sub(r"\b[vV]?\d+(?:[._-]\d+){1,4}(?:[a-zA-Z]\d*)?\b", "", name)
+
+    # Remove tags comuns de release
+    name = re.sub(r"\b(alpha|beta|rc|release|final|hotfix|build)\b",
+                  "", name, flags=re.IGNORECASE)
+
+    # Normaliza separadores
+    name = re.sub(r"[._-]+", " ", name)
+    name = re.sub(r"\s+", " ", name).strip(" -_.")
+
+    if not name:
+        fallback = os.path.splitext(os.path.basename(archive_path))[0].strip()
+        return fallback or "Mod"
+
+    return name
 
 
 class EnhancedAutoInstaller:
@@ -113,7 +138,18 @@ class EnhancedAutoInstaller:
         if not archive_path:
             return
 
-        if not self._enqueue_install_path(str(archive_path)):
+        archive_path = str(archive_path)
+        if not self._wait_for_archive_path(archive_path, timeout_seconds=4.0):
+            _logger.warning(
+                f"Arquivo de download não ficou disponível a tempo: {archive_path}")
+            return
+
+        if self._get_bool("strictArchiveCheck", True) and not self._is_supported_archive(archive_path):
+            _logger.info(
+                f"Download ignorado (extensão não suportada): {archive_path}")
+            return
+
+        if not self._enqueue_install_path(archive_path):
             return
 
         QTimer.singleShot(250, self._process_install_queue)
@@ -151,6 +187,18 @@ class EnhancedAutoInstaller:
 
     def _mark_recent_install(self, archive_path: str) -> None:
         self._recent_install_paths[_norm_path(archive_path)] = time.time()
+
+    def _wait_for_archive_path(self, archive_path: str, timeout_seconds: float) -> bool:
+        deadline = time.time() + max(0.2, timeout_seconds)
+        while time.time() < deadline:
+            if os.path.isfile(archive_path):
+                return True
+            time.sleep(0.08)
+        return os.path.isfile(archive_path)
+
+    def _is_supported_archive(self, archive_path: str) -> bool:
+        valid_suffixes = (".7z", ".zip", ".rar", ".fomod", ".omod")
+        return archive_path.lower().endswith(valid_suffixes)
 
     def _prune_recent_map(self, cache: Dict[Any, float], now: float, ttl_seconds: float) -> None:
         expired = [key for key, timestamp in cache.items() if (
@@ -275,12 +323,21 @@ class EnhancedAutoInstaller:
 
         installed_mod = None
         try:
-            base_name = os.path.splitext(os.path.basename(archive_path))[0]
+            sanitize_name = self._get_bool("sanitizeModName", True)
+            base_name = _sanitize_mod_name_from_archive(
+                archive_path) if sanitize_name else os.path.splitext(os.path.basename(archive_path))[0]
+            _logger.info(
+                f"Nome de instalação calculado: '{base_name}' (sanitize={sanitize_name})")
+
             try:
                 installed_mod = self._organizer.installMod(
                     archive_path, base_name)
             except TypeError:
-                installed_mod = self._organizer.installMod(archive_path)
+                try:
+                    installed_mod = self._organizer.installMod(
+                        archive_path, "")
+                except TypeError:
+                    installed_mod = self._organizer.installMod(archive_path)
 
             self._auto_confirm_install_dialog(
                 timeout_seconds=1.4,
