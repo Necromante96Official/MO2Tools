@@ -1,9 +1,10 @@
-# Auto-Installer robusto para MO2Tools v0.1.0
+# Auto-Installer robusto para MO2Tools v0.1.1
 import os
 import queue
 import time
 import logging
 import re
+import zipfile
 from typing import Any, Dict, List, Optional, Set
 
 try:
@@ -237,28 +238,61 @@ class EnhancedAutoInstaller:
     def _wait_for_archive_path(self, archive_path: str, timeout_seconds: float) -> bool:
         deadline = time.time() + max(0.2, timeout_seconds)
         last_size: Optional[int] = None
-        stable_reads = 0
+        last_mtime: Optional[float] = None
+        stable_since: Optional[float] = None
 
         while time.time() < deadline:
             if os.path.isfile(archive_path):
                 try:
-                    current_size = os.path.getsize(archive_path)
+                    file_stat = os.stat(archive_path)
+                    current_size = int(file_stat.st_size)
+                    current_mtime = float(file_stat.st_mtime)
                 except Exception:
                     current_size = None
+                    current_mtime = None
 
                 if current_size is not None and current_size > 0:
-                    if last_size == current_size:
-                        stable_reads += 1
-                    else:
-                        stable_reads = 0
-                    last_size = current_size
+                    changed = (last_size != current_size) or (
+                        last_mtime != current_mtime)
 
-                    # Considera pronto quando o tamanho estabiliza por alguns ciclos.
-                    if stable_reads >= 3:
+                    if changed:
+                        stable_since = time.time()
+                    else:
+                        if stable_since is None:
+                            stable_since = time.time()
+
+                    is_stable = stable_since is not None and (
+                        time.time() - stable_since) >= 1.2
+                    last_size = current_size
+                    last_mtime = current_mtime
+
+                    # Para zip do Nexus, garante leitura válida do cabeçalho/central directory.
+                    if is_stable and self._is_archive_content_ready(archive_path):
                         return True
             time.sleep(0.08)
 
-        return os.path.isfile(archive_path) and (last_size or 0) > 0
+        return self._is_archive_content_ready(archive_path)
+
+    def _is_archive_content_ready(self, archive_path: str) -> bool:
+        if not os.path.isfile(archive_path):
+            return False
+
+        try:
+            if os.path.getsize(archive_path) <= 0:
+                return False
+        except Exception:
+            return False
+
+        # Zip é o formato mais comum do Nexus; validar abertura evita iniciar instalação em arquivo parcial.
+        if archive_path.lower().endswith(".zip"):
+            try:
+                with zipfile.ZipFile(archive_path, "r") as zip_obj:
+                    zip_obj.infolist()
+                return True
+            except (zipfile.BadZipFile, EOFError, OSError):
+                return False
+
+        return True
 
     def _is_supported_archive(self, archive_path: str) -> bool:
         valid_suffixes = (".7z", ".zip", ".rar", ".fomod", ".omod")

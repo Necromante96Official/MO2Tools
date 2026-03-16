@@ -36,7 +36,7 @@ class MO2ToolsDialog(QDialog):
         self._status_label = None
         self._toggle_items = []
 
-        self.setWindowTitle("MO2Tools v0.1.0 - Premium Control Center")
+        self.setWindowTitle("MO2Tools v0.1.1 - Premium Control Center")
         self.setMinimumSize(860, 560)
         self.setStyleSheet(
             "QDialog {"
@@ -79,7 +79,7 @@ class MO2ToolsDialog(QDialog):
         root_layout.addWidget(subtitle)
 
         badge_row = QHBoxLayout()
-        badge = QLabel("v0.1.0")
+        badge = QLabel("v0.1.1")
         badge.setObjectName("badge")
         badge_row.addWidget(badge)
         badge_row.addStretch()
@@ -97,7 +97,7 @@ class MO2ToolsDialog(QDialog):
         overview_layout.setContentsMargins(12, 12, 12, 12)
         overview_layout.setSpacing(8)
         overview_layout.addWidget(self._section_title("Resumo"))
-        overview_layout.addWidget(QLabel("Versão: 0.1.0"))
+        overview_layout.addWidget(QLabel("Versão: 0.1.1"))
         overview_layout.addWidget(
             QLabel("Desenvolvido por: Necromante96Official"))
         overview_layout.addWidget(QLabel("Plugin: MO2Tools"))
