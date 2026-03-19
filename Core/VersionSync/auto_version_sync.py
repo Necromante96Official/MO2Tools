@@ -1,16 +1,60 @@
 import configparser
 import logging
 import os
+import time
 from typing import Any, Dict, Optional, Tuple
 
 try:
-    from PyQt6.QtCore import QTimer
+    from PyQt6.QtCore import QEvent, QObject, Qt, QTimer
+    from PyQt6.QtGui import QKeySequence
+    from PyQt6.QtWidgets import QApplication
 except ImportError:
-    from PyQt5.QtCore import QTimer
+    from PyQt5.QtCore import QEvent, QObject, Qt, QTimer
+    from PyQt5.QtGui import QKeySequence
+    from PyQt5.QtWidgets import QApplication
 
 
 _logger = logging.getLogger("MO2Tools.VersionSync")
 _logger.setLevel(logging.DEBUG)
+
+
+def _qkeysequence_portable_text() -> int:
+    try:
+        return int(QKeySequence.SequenceFormat.PortableText)
+    except Exception:
+        return int(QKeySequence.PortableText)
+
+
+def _qt_keypress_type() -> int:
+    try:
+        return int(QEvent.Type.KeyPress)
+    except Exception:
+        return int(QEvent.KeyPress)
+
+
+def _enum_to_int(value: Any) -> int:
+    try:
+        return int(value)
+    except Exception:
+        try:
+            return int(value.value)
+        except Exception:
+            return 0
+
+
+class _VersionFixShortcutFilter(QObject):
+    def __init__(self, owner: "AutoVersionSync") -> None:
+        super().__init__()
+        self._owner = owner
+
+    def eventFilter(self, _obj: Any, event: Any) -> bool:  # noqa: N802 (assinatura Qt)
+        if event is None:
+            return False
+
+        if _enum_to_int(event.type()) != _qt_keypress_type():
+            return False
+
+        return self._owner._handle_shortcut_keypress(event)
 
 
 def _parse_numeric_version(version_str: str) -> Optional[Tuple[int, ...]]:
@@ -36,8 +80,11 @@ class AutoVersionSync:
         self._organizer = organizer
         self._plugin_name = plugin_name
         self._timer: Optional[QTimer] = None
+        self._shortcut_filter: Optional[_VersionFixShortcutFilter] = None
+        self._last_shortcut_trigger_at = 0.0
 
         self._setup_timer()
+        self._setup_shortcut_listener()
 
         if self._get_bool("autoVersionFixRunOnStartup", True):
             # Roda uma vez no startup do MO2 para correção imediata.
@@ -86,6 +133,98 @@ class AutoVersionSync:
 
     def reload_from_settings(self) -> None:
         self._setup_timer()
+        self._setup_shortcut_listener()
+
+    def _read_shortcut(self) -> str:
+        value = self._read_setting("versionFixShortcut", "Ctrl+Shift+Z")
+        text = str(value or "").strip()
+        return text if text else "Ctrl+Shift+Z"
+
+    def _normalize_shortcut_text(self, text: str) -> str:
+        shortcut_text = str(text or "").strip()
+        if not shortcut_text:
+            return ""
+        try:
+            fmt = _qkeysequence_portable_text()
+            return str(QKeySequence.fromString(shortcut_text, fmt).toString(fmt)).strip().lower()
+        except Exception:
+            try:
+                return str(QKeySequence(shortcut_text).toString()).strip().lower()
+            except Exception:
+                return shortcut_text.lower()
+
+    def _setup_shortcut_listener(self) -> None:
+        app = QApplication.instance()
+        if app is None:
+            _logger.debug(
+                "Atalho Version Fix pendente: QApplication ainda não está pronta.")
+            QTimer.singleShot(1200, self._setup_shortcut_listener)
+            return
+
+        if self._shortcut_filter is not None:
+            return
+
+        try:
+            self._shortcut_filter = _VersionFixShortcutFilter(self)
+            app.installEventFilter(self._shortcut_filter)
+            _logger.info("Listener global de atalho do Version Fix ativado.")
+        except Exception as exc:
+            _logger.warning(
+                "Falha ao ativar listener global de atalho: %s", exc)
+
+    def _handle_shortcut_keypress(self, event: Any) -> bool:
+        if not self._get_bool("enabled", True):
+            return False
+        if not self._get_bool("autoVersionFixEnabled", True):
+            return False
+        if not self._get_bool("versionFixShortcutEnabled", True):
+            return False
+
+        key_code = _enum_to_int(event.key())
+        try:
+            modifier_only = {
+                _enum_to_int(Qt.Key.Key_Control),
+                _enum_to_int(Qt.Key.Key_Shift),
+                _enum_to_int(Qt.Key.Key_Alt),
+                _enum_to_int(Qt.Key.Key_Meta),
+            }
+        except Exception:
+            modifier_only = {
+                _enum_to_int(Qt.Key_Control),
+                _enum_to_int(Qt.Key_Shift),
+                _enum_to_int(Qt.Key_Alt),
+                _enum_to_int(Qt.Key_Meta),
+            }
+        if key_code in modifier_only:
+            return False
+
+        target_shortcut = self._normalize_shortcut_text(self._read_shortcut())
+        if not target_shortcut:
+            return False
+
+        combo_value = _enum_to_int(event.modifiers()) | key_code
+        try:
+            fmt = _qkeysequence_portable_text()
+            pressed_shortcut = str(QKeySequence(
+                combo_value).toString(fmt)).strip().lower()
+        except Exception:
+            pressed_shortcut = str(QKeySequence(
+                combo_value).toString()).strip().lower()
+
+        if pressed_shortcut != target_shortcut:
+            return False
+
+        now = time.time()
+        if (now - self._last_shortcut_trigger_at) < 0.55:
+            return True
+        self._last_shortcut_trigger_at = now
+
+        _logger.info(
+            "Atalho do Version Fix acionado | shortcut=%s",
+            self._read_shortcut(),
+        )
+        QTimer.singleShot(0, self.trigger_now)
+        return True
 
     def trigger_now(self) -> None:
         self.run_once()

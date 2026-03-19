@@ -1,12 +1,14 @@
 # UI Module Master
 try:
     from PyQt6.QtCore import Qt
+    from PyQt6.QtGui import QKeySequence
     from PyQt6.QtWidgets import (
         QCheckBox,
         QDialog,
         QFrame,
         QGridLayout,
         QHBoxLayout,
+        QKeySequenceEdit,
         QLabel,
         QMessageBox,
         QPushButton,
@@ -15,12 +17,14 @@ try:
     )
 except ImportError:
     from PyQt5.QtCore import Qt
+    from PyQt5.QtGui import QKeySequence
     from PyQt5.QtWidgets import (
         QCheckBox,
         QDialog,
         QFrame,
         QGridLayout,
         QHBoxLayout,
+        QKeySequenceEdit,
         QLabel,
         QMessageBox,
         QPushButton,
@@ -36,7 +40,7 @@ class MO2ToolsDialog(QDialog):
         self._status_label = None
         self._toggle_items = []
 
-        self.setWindowTitle("MO2Tools v0.1.9 - Premium Control Center")
+        self.setWindowTitle("MO2Tools v0.2.0 - Premium Control Center")
         self.setMinimumSize(860, 560)
         self.setStyleSheet(
             "QDialog {"
@@ -79,7 +83,7 @@ class MO2ToolsDialog(QDialog):
         root_layout.addWidget(subtitle)
 
         badge_row = QHBoxLayout()
-        badge = QLabel("v0.1.9")
+        badge = QLabel("v0.2.0")
         badge.setObjectName("badge")
         badge_row.addWidget(badge)
         badge_row.addStretch()
@@ -97,7 +101,7 @@ class MO2ToolsDialog(QDialog):
         overview_layout.setContentsMargins(12, 12, 12, 12)
         overview_layout.setSpacing(8)
         overview_layout.addWidget(self._section_title("Resumo"))
-        overview_layout.addWidget(QLabel("Versão: 0.1.9"))
+        overview_layout.addWidget(QLabel("Versão: 0.2.0"))
         overview_layout.addWidget(
             QLabel("Desenvolvido por: Necromante96Official"))
         overview_layout.addWidget(QLabel("Plugin: MO2Tools"))
@@ -160,10 +164,20 @@ class MO2ToolsDialog(QDialog):
             version_layout, "Ativar Version Fix", "autoVersionFixEnabled", True)
         self.cb_run_on_startup, self.lb_run_on_startup = self._add_toggle(
             version_layout, "Rodar Version Fix no startup", "autoVersionFixRunOnStartup", True)
+        self.cb_shortcut_enabled, self.lb_shortcut_enabled = self._add_toggle(
+            version_layout, "Atalho global do Version Fix", "versionFixShortcutEnabled", True)
         self.cb_refresh_after_fix, self.lb_refresh_after_fix = self._add_toggle(
             version_layout, "Refresh após Version Fix", "autoVersionFixRefreshAfterRun", True)
         self.cb_backup_meta, self.lb_backup_meta = self._add_toggle(
             version_layout, "Criar backup .bak", "autoVersionFixCreateBackup", True)
+
+        shortcut_row = QHBoxLayout()
+        shortcut_row.addWidget(QLabel("Atalho Version Fix:"))
+        self.shortcut_edit = QKeySequenceEdit()
+        self.shortcut_edit.setKeySequence(QKeySequence("Ctrl+Shift+Z"))
+        shortcut_row.addWidget(self.shortcut_edit)
+        shortcut_row.addStretch()
+        version_layout.addLayout(shortcut_row)
 
         interval_row = QHBoxLayout()
         interval_row.addWidget(QLabel("Intervalo (minutos):"))
@@ -283,6 +297,20 @@ class MO2ToolsDialog(QDialog):
         except Exception:
             return default
 
+    def _read_text(self, setting_key, default=""):
+        if not self._plugin or not getattr(self._plugin, "_organizer", None):
+            return default
+
+        organizer = self._plugin._organizer
+        plugin_name = self._plugin.name()
+        try:
+            raw = organizer.pluginSetting(plugin_name, setting_key)
+        except Exception:
+            raw = default
+
+        text = str(raw if raw is not None else default).strip()
+        return text if text else str(default)
+
     def _set_setting(self, setting_key, value):
         if not self._plugin or not getattr(self._plugin, "_organizer", None):
             return
@@ -299,6 +327,9 @@ class MO2ToolsDialog(QDialog):
 
         self.spin_interval_minutes.setValue(
             self._read_int("autoVersionFixIntervalMinutes", 10))
+        self.shortcut_edit.setKeySequence(
+            QKeySequence(self._read_text("versionFixShortcut", "Ctrl+Shift+Z"))
+        )
 
     def _restore_defaults(self):
         defaults = {
@@ -314,6 +345,7 @@ class MO2ToolsDialog(QDialog):
             "deleteDownloadSidecars": True,
             "autoVersionFixEnabled": True,
             "autoVersionFixRunOnStartup": True,
+            "versionFixShortcutEnabled": True,
             "autoVersionFixRefreshAfterRun": True,
             "autoVersionFixCreateBackup": True,
         }
@@ -324,6 +356,7 @@ class MO2ToolsDialog(QDialog):
             self._update_toggle_pill(pill, target)
 
         self.spin_interval_minutes.setValue(10)
+        self.shortcut_edit.setKeySequence(QKeySequence("Ctrl+Shift+Z"))
         self._refresh_live_status()
 
     def _save_values(self):
@@ -332,6 +365,11 @@ class MO2ToolsDialog(QDialog):
 
         self._set_setting("autoVersionFixIntervalMinutes",
                           int(self.spin_interval_minutes.value()))
+        self._set_setting(
+            "versionFixShortcut",
+            str(self.shortcut_edit.keySequence().toString()
+                ).strip() or "Ctrl+Shift+Z",
+        )
 
         self._apply_runtime_updates()
         self._refresh_live_status()
@@ -394,6 +432,7 @@ class MO2ToolsDialog(QDialog):
             f"sanitize={state.get('sanitizeModName')} | titleCase={state.get('titleCaseModName')} | "
             f"strictArchive={state.get('strictArchiveCheck')} | deleteDownload={state.get('deleteDownloadAfterInstall')} | "
             f"deleteSidecars={state.get('deleteDownloadSidecars')} | autoVersionFix={state.get('autoVersionFixEnabled')} | "
-            f"runOnStartup={state.get('autoVersionFixRunOnStartup')} | refreshAfterFix={state.get('autoVersionFixRefreshAfterRun')} | "
+            f"runOnStartup={state.get('autoVersionFixRunOnStartup')} | shortcutEnabled={state.get('versionFixShortcutEnabled')} | "
+            f"shortcut={str(self.shortcut_edit.keySequence().toString()).strip() or 'Ctrl+Shift+Z'} | refreshAfterFix={state.get('autoVersionFixRefreshAfterRun')} | "
             f"backupMeta={state.get('autoVersionFixCreateBackup')} | interval={int(self.spin_interval_minutes.value())}min"
         )
