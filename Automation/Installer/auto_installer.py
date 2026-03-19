@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.2.1
+# Auto-Installer robusto para MO2Tools v0.2.2
 import os
 import queue
 import time
@@ -158,6 +158,26 @@ def _merge_copy_tree_contents(source_root: str, target_root: str) -> int:
             copied += 1
 
     return copied
+
+
+def _clear_files_keep_directories(target_root: str, protected_root_files: Optional[Set[str]] = None) -> int:
+    protected = {item.lower() for item in (protected_root_files or set())}
+    removed = 0
+
+    for root, _dirs, files in os.walk(target_root):
+        rel = os.path.relpath(root, target_root)
+        is_root = rel == "."
+        for file_name in files:
+            if is_root and file_name.lower() in protected:
+                continue
+            file_path = os.path.join(root, file_name)
+            try:
+                os.remove(file_path)
+                removed += 1
+            except Exception:
+                continue
+
+    return removed
 
 
 @dataclass
@@ -1209,6 +1229,10 @@ class EnhancedAutoInstaller:
                 )
                 return False
 
+            removed_count = _clear_files_keep_directories(
+                existing_dir,
+                protected_root_files={"meta.ini"},
+            )
             copied_count = _merge_copy_tree_contents(source_root, existing_dir)
 
             try:
@@ -1221,6 +1245,11 @@ class EnhancedAutoInstaller:
                 mod_name,
                 existing_dir,
                 copied_count,
+            )
+            _logger.debug(
+                "Pré-limpeza in-place concluída preservando diretórios e meta.ini | mod=%s | removedFiles=%s",
+                mod_name,
+                removed_count,
             )
             return copied_count > 0
         except Exception as exc:

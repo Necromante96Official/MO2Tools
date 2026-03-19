@@ -669,3 +669,207 @@
 2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
 2026-03-18 21:32:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
 2026-03-18 21:32:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:20:53 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-19 17:20:53 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-19 17:20:53 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-19 17:20:53 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-19 17:20:53 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-19 17:20:53 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-19 17:20:54 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:20:58 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-19 17:20:58 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:20:58 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:20:59 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0 | queueApprox=1
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | localAttempt=1
+2026-03-19 17:20:59 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Farm Type Manager' (sanitize=True, titleCase=True)
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Atualização in-place aplicada sem remover estrutura existente | mod=Farm Type Manager | dir=D:/ModOrganizer2/mods\Farm Type Manager | copiedFiles=10
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Instalação concluída por atualização in-place | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | mod=Farm Type Manager
+2026-03-19 17:20:59 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | strategyIndex=1/4
+2026-03-19 17:20:59 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
+2026-03-19 17:21:06 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:21:16 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-19 17:21:16 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:16 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:17 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0 | queueApprox=1
+2026-03-19 17:21:17 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:17 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | localAttempt=1
+2026-03-19 17:21:17 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-19 17:21:17 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Farm Type Manager' (sanitize=True, titleCase=True)
+2026-03-19 17:21:18 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=farm type manager v1.26.1-3231-1-26-1-1763142930.zip | baseName=farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:18 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-19 17:21:19 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | elapsed=1.81s
+2026-03-19 17:21:19 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | strategyIndex=1/4
+2026-03-19 17:21:19 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
+2026-03-19 17:21:19 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-19 17:21:19 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:21:26 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-19 17:21:26 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:26 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:28 | DEBUG | MO2Tools.Installer | Dedupe curto bloqueou enqueue | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0
+2026-03-19 17:21:28 | DEBUG | MO2Tools.Installer | Download já presente em fila/inflight/dedupe | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:21:32 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:21:44 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:21:57 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:22:10 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:22:23 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:22:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:22:48 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:23:01 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:23:13 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:23:26 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:23:39 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:23:52 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:24:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:24:17 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:24:30 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:24:42 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:24:55 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:25:08 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:25:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:25:33 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:25:46 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:25:59 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:26:11 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:26:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:26:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:26:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:27:02 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:27:15 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:27:28 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:27:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:27:53 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:28:06 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:28:18 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:28:31 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:28:44 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:28:57 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:29:09 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:29:22 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:29:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:29:47 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:30:00 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:30:13 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:30:26 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:30:38 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:30:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:31:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:31:16 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:31:29 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:31:42 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:31:55 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:32:07 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:32:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:32:33 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:32:45 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:32:58 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:33:11 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:33:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:33:36 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:33:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:34:02 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:34:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:34:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:34:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:34:53 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:35:05 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:35:18 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:35:31 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:35:44 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:35:56 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:36:09 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:36:22 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:36:34 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:36:47 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:37:00 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:37:13 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:37:25 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:37:38 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:37:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:38:03 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:38:16 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:38:29 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:38:41 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:38:54 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:39:07 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:39:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:39:32 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:39:45 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:39:58 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:40:10 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:40:23 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:40:36 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:40:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:41:01 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:41:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:41:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=1 | failures=0
+2026-03-19 17:41:29 | DEBUG | MO2Tools.Installer | Jobs expirados removidos: 1
+2026-03-19 17:41:39 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:41:52 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:42:05 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:42:17 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:42:30 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:42:43 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:42:56 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:43:08 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:43:21 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:43:34 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:43:46 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:43:59 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:44:12 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:44:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:44:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:44:50 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:45:03 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:45:15 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:45:28 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:45:41 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:45:53 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:46:06 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:46:19 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:46:32 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:46:44 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:46:57 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:47:10 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:47:22 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:47:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:47:48 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:48:00 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:48:13 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:48:26 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:48:39 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:48:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:49:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:49:17 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:49:29 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:49:42 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:49:55 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:50:07 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:50:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:50:33 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:50:46 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:50:58 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:51:11 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:51:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:51:36 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:51:47 | INFO | MO2Tools.Installer | Download pausado | id=0
+2026-03-19 17:51:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:51:52 | WARNING | MO2Tools.Installer | Download marcado como falho | id=0 | path=d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:51:55 | INFO | MO2Tools.Installer | Download removido sem caminho registrado | id=0
+2026-03-19 17:51:59 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-19 17:51:59 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:51:59 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:52:00 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0 | queueApprox=1
+2026-03-19 17:52:00 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-19 17:52:00 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | localAttempt=1
+2026-03-19 17:52:00 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-19 17:52:00 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Farm Type Manager' (sanitize=True, titleCase=True)
+2026-03-19 17:52:00 | INFO | MO2Tools.Installer | Atualização in-place aplicada sem remover estrutura existente | mod=Farm Type Manager | dir=D:/ModOrganizer2/mods\Farm Type Manager | copiedFiles=10
+2026-03-19 17:52:01 | INFO | MO2Tools.Installer | Instalação concluída por atualização in-place | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | mod=Farm Type Manager
+2026-03-19 17:52:01 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | strategyIndex=1/4
+2026-03-19 17:52:01 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
+2026-03-19 17:52:02 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:52:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:52:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-19 17:52:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
