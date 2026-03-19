@@ -631,3 +631,41 @@
 2026-03-17 23:59:11 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
 2026-03-17 23:59:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
 2026-03-17 23:59:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:31:35 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-18 21:31:35 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-18 21:31:35 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-18 21:31:35 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-18 21:31:35 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-18 21:31:35 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-18 21:31:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:31:40 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-18 21:31:40 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:31:40 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:31:41 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0 | queueApprox=1
+2026-03-18 21:31:41 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:31:41 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | localAttempt=1
+2026-03-18 21:31:41 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-18 21:31:41 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Farm Type Manager' (sanitize=True, titleCase=True)
+2026-03-18 21:31:42 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-18 21:31:42 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=farm type manager v1.26.1-3231-1-26-1-1763142930.zip | baseName=farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:31:43 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | elapsed=1.88s
+2026-03-18 21:31:43 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | strategyIndex=1/4
+2026-03-18 21:31:43 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
+2026-03-18 21:31:43 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-18 21:31:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:32:02 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:32:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:32:15 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-18 21:32:15 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\farm type manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:32:15 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:32:16 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | downloadId=0 | queueApprox=1
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | localAttempt=1
+2026-03-18 21:32:16 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Farm Type Manager' (sanitize=True, titleCase=True)
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Atualização in-place aplicada | mod=Farm Type Manager | dir=D:/ModOrganizer2/mods\Farm Type Manager | copiedEntries=3
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Instalação concluída por atualização in-place | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | mod=Farm Type Manager
+2026-03-18 21:32:16 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip | strategyIndex=1/4
+2026-03-18 21:32:16 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Farm Type Manager v1.26.1-3231-1-26-1-1763142930.zip' (manager=False, files=2)
+2026-03-18 21:32:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-18 21:32:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0

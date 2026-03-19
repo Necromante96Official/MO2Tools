@@ -1,4 +1,4 @@
-# Auto-Installer robusto para MO2Tools v0.2.0
+# Auto-Installer robusto para MO2Tools v0.2.1
 import os
 import queue
 import time
@@ -143,26 +143,20 @@ def _title_case_mod_name(name: str) -> str:
     return " ".join(words) if words else "Mod"
 
 
-def _clear_directory_contents(directory_path: str) -> None:
-    for entry in os.listdir(directory_path):
-        target = os.path.join(directory_path, entry)
-        if os.path.isdir(target):
-            shutil.rmtree(target, ignore_errors=False)
-        else:
-            os.remove(target)
-
-
-def _copy_tree_contents(source_root: str, target_root: str) -> int:
+def _merge_copy_tree_contents(source_root: str, target_root: str) -> int:
     copied = 0
-    for entry in os.listdir(source_root):
-        src = os.path.join(source_root, entry)
-        dst = os.path.join(target_root, entry)
-        if os.path.isdir(src):
-            shutil.copytree(src, dst)
+    for root, _dirs, files in os.walk(source_root):
+        rel = os.path.relpath(root, source_root)
+        dst_root = target_root if rel == "." else os.path.join(
+            target_root, rel)
+        os.makedirs(dst_root, exist_ok=True)
+
+        for file_name in files:
+            src_file = os.path.join(root, file_name)
+            dst_file = os.path.join(dst_root, file_name)
+            shutil.copy2(src_file, dst_file)
             copied += 1
-        else:
-            shutil.copy2(src, dst)
-            copied += 1
+
     return copied
 
 
@@ -1215,8 +1209,7 @@ class EnhancedAutoInstaller:
                 )
                 return False
 
-            _clear_directory_contents(existing_dir)
-            copied_count = _copy_tree_contents(source_root, existing_dir)
+            copied_count = _merge_copy_tree_contents(source_root, existing_dir)
 
             try:
                 self._organizer.refresh(True)
@@ -1224,7 +1217,7 @@ class EnhancedAutoInstaller:
                 pass
 
             _logger.info(
-                "Atualização in-place aplicada | mod=%s | dir=%s | copiedEntries=%s",
+                "Atualização in-place aplicada sem remover estrutura existente | mod=%s | dir=%s | copiedFiles=%s",
                 mod_name,
                 existing_dir,
                 copied_count,
