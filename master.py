@@ -44,7 +44,7 @@ class MO2ToolsMaster(mobase.IPluginTool):
         return "Abrir painel do MO2Tools"
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(0, 1, 8, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(0, 1, 9, mobase.ReleaseType.FINAL)
 
     def isActive(self) -> bool:
         return True
@@ -58,6 +58,8 @@ class MO2ToolsMaster(mobase.IPluginTool):
                 "fastInstall", "Selecionar instalação rápida automaticamente", True),
             mobase.PluginSetting(
                 "autoReplace", "Substituir automaticamente quando mod já existir", True),
+            mobase.PluginSetting(
+                "inPlaceUpdateExistingMod", "Atualizar mod existente in-place (mantém pasta e data de criação)", True),
             mobase.PluginSetting(
                 "sanitizeModName", "Limpar nome automático do mod (sem versão/código Nexus)", True),
             mobase.PluginSetting(

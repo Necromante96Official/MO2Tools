@@ -1,8 +1,10 @@
-# Auto-Installer robusto para MO2Tools v0.1.8
+# Auto-Installer robusto para MO2Tools v0.1.9
 import os
 import queue
 import time
 import logging
+import shutil
+import tempfile
 from logging.handlers import RotatingFileHandler
 import re
 import zipfile
@@ -139,6 +141,29 @@ def _title_case_mod_name(name: str) -> str:
         words.append(clean[:1].upper() + clean[1:].lower())
 
     return " ".join(words) if words else "Mod"
+
+
+def _clear_directory_contents(directory_path: str) -> None:
+    for entry in os.listdir(directory_path):
+        target = os.path.join(directory_path, entry)
+        if os.path.isdir(target):
+            shutil.rmtree(target, ignore_errors=False)
+        else:
+            os.remove(target)
+
+
+def _copy_tree_contents(source_root: str, target_root: str) -> int:
+    copied = 0
+    for entry in os.listdir(source_root):
+        src = os.path.join(source_root, entry)
+        dst = os.path.join(target_root, entry)
+        if os.path.isdir(src):
+            shutil.copytree(src, dst)
+            copied += 1
+        else:
+            shutil.copy2(src, dst)
+            copied += 1
+    return copied
 
 
 @dataclass
@@ -1098,6 +1123,18 @@ class EnhancedAutoInstaller:
             _logger.info(
                 f"Nome de instalação calculado: '{base_name}' (sanitize={sanitize_name}, titleCase={title_case_name})")
 
+            updated_in_place = self._try_inplace_update_existing_mod(
+                archive_path=archive_path,
+                mod_name=base_name,
+            )
+            if updated_in_place:
+                _logger.info(
+                    "Instalação concluída por atualização in-place | path=%s | mod=%s",
+                    archive_path,
+                    base_name,
+                )
+                return True
+
             try:
                 installed_mod = self._organizer.installMod(
                     archive_path, base_name)
@@ -1147,6 +1184,113 @@ class EnhancedAutoInstaller:
             time.time() - started_at,
         )
         return by_event
+
+    def _try_inplace_update_existing_mod(self, archive_path: str, mod_name: str) -> bool:
+        if not self._get_bool("inPlaceUpdateExistingMod", True):
+            return False
+
+        existing_dir = self._find_existing_mod_dir(mod_name)
+        if not existing_dir:
+            return False
+
+        archive_lower = str(archive_path).lower()
+        if not archive_lower.endswith(".zip"):
+            _logger.debug(
+                "In-place ignorado: formato de arquivo não suportado para extração local | path=%s",
+                archive_path,
+            )
+            return False
+
+        temp_root = tempfile.mkdtemp(prefix="mo2tools_inplace_")
+        try:
+            with zipfile.ZipFile(archive_path, "r") as zip_obj:
+                zip_obj.extractall(temp_root)
+
+            source_root = self._resolve_extracted_payload_root(temp_root)
+            if source_root is None:
+                _logger.warning(
+                    "In-place abortado: conteúdo extraído vazio | path=%s | mod=%s",
+                    archive_path,
+                    mod_name,
+                )
+                return False
+
+            _clear_directory_contents(existing_dir)
+            copied_count = _copy_tree_contents(source_root, existing_dir)
+
+            try:
+                self._organizer.refresh(True)
+            except Exception:
+                pass
+
+            _logger.info(
+                "Atualização in-place aplicada | mod=%s | dir=%s | copiedEntries=%s",
+                mod_name,
+                existing_dir,
+                copied_count,
+            )
+            return copied_count > 0
+        except Exception as exc:
+            _logger.warning(
+                "Falha na atualização in-place; fallback para installMod | mod=%s | path=%s | err=%s",
+                mod_name,
+                archive_path,
+                exc,
+                exc_info=True,
+            )
+            return False
+        finally:
+            try:
+                shutil.rmtree(temp_root, ignore_errors=True)
+            except Exception:
+                pass
+
+    def _resolve_extracted_payload_root(self, extract_root: str) -> Optional[str]:
+        if not os.path.isdir(extract_root):
+            return None
+
+        entries = [
+            os.path.join(extract_root, item)
+            for item in os.listdir(extract_root)
+            if item not in {"__MACOSX"}
+        ]
+        if not entries:
+            return None
+
+        has_root_files = any(os.path.isfile(item) for item in entries)
+        root_dirs = [item for item in entries if os.path.isdir(item)]
+        if (not has_root_files) and len(root_dirs) == 1:
+            return root_dirs[0]
+        return extract_root
+
+    def _find_existing_mod_dir(self, mod_name: str) -> Optional[str]:
+        if not self._organizer:
+            return None
+
+        try:
+            mods_root = str(self._organizer.modsPath() or "").strip()
+        except Exception:
+            mods_root = ""
+
+        if not mods_root or not os.path.isdir(mods_root):
+            return None
+
+        direct = os.path.join(mods_root, mod_name)
+        if os.path.isdir(direct):
+            return direct
+
+        target_norm = _norm_path(mod_name)
+        try:
+            for entry in os.listdir(mods_root):
+                candidate = os.path.join(mods_root, entry)
+                if not os.path.isdir(candidate):
+                    continue
+                if _norm_path(entry) == target_norm:
+                    return candidate
+        except Exception:
+            return None
+
+        return None
 
     def _is_successful_install_result(self, install_result: Any) -> bool:
         if install_result is None:

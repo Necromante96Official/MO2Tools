@@ -80,3 +80,554 @@
 2026-03-16 11:22:16 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
 2026-03-16 11:22:25 | INFO | MO2Tools.Installer | Download removido sem caminho registrado | id=0
 2026-03-16 11:22:29 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:32:48 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 11:32:48 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 11:32:48 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-16 11:32:48 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-16 11:32:48 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-16 11:32:48 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-16 11:32:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:33:02 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:33:08 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:33:08 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:33:08 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:33:09 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:33:09 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:33:09 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | localAttempt=1
+2026-03-16 11:33:09 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:33:09 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Horse Flute Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 11:33:09 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:33:10 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip | baseName=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 11:33:11 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | elapsed=2.18s
+2026-03-16 11:33:11 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | strategyIndex=1/4
+2026-03-16 11:33:11 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip' (manager=False, files=2)
+2026-03-16 11:33:11 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:33:14 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:33:27 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:33:37 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:33:37 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:33:37 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:33:38 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:33:38 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:33:38 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | localAttempt=1
+2026-03-16 11:33:38 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:33:38 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Crops Anytime Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 11:33:39 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:33:39 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip | baseName=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 11:33:40 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | elapsed=1.95s
+2026-03-16 11:33:40 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | strategyIndex=1/4
+2026-03-16 11:33:40 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip' (manager=False, files=2)
+2026-03-16 11:33:40 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:33:40 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:33:51 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:33:51 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\debug mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 11:33:51 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 11:33:52 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:33:52 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 11:33:52 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | localAttempt=1
+2026-03-16 11:33:52 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:33:52 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Debug Mode' (sanitize=True, titleCase=True)
+2026-03-16 11:33:53 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:33:53 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=debug mode 1.17.4-679-1-17-4-1773543077.zip | baseName=debug mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 11:33:54 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | elapsed=1.76s
+2026-03-16 11:33:54 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | strategyIndex=1/4
+2026-03-16 11:33:54 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip' (manager=False, files=2)
+2026-03-16 11:33:54 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:33:54 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:34:07 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:34:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:34:32 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:34:32 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\small beach farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 11:34:32 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 11:34:33 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:34:33 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 11:34:33 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | localAttempt=1
+2026-03-16 11:34:33 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:34:33 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Small Beach Farm' (sanitize=True, titleCase=True)
+2026-03-16 11:34:33 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:34:33 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=small beach farm 2.5.14-3750-2-5-14-1773543539.zip | baseName=small beach farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 11:34:35 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | elapsed=1.77s
+2026-03-16 11:34:35 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | strategyIndex=1/4
+2026-03-16 11:34:35 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip' (manager=False, files=2)
+2026-03-16 11:34:35 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:34:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 11:34:43 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 11:34:43 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\data layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 11:34:43 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 11:34:44 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | downloadId=0 | queueApprox=1
+2026-03-16 11:34:44 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 11:34:44 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | localAttempt=1
+2026-03-16 11:34:44 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 11:34:44 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Data Layers' (sanitize=True, titleCase=True)
+2026-03-16 11:34:44 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 11:34:45 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=data layers 1.23.0-1691-1-23-0-1773543033.zip | baseName=data layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 11:34:46 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | elapsed=2.09s
+2026-03-16 11:34:46 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | strategyIndex=1/4
+2026-03-16 11:34:46 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip' (manager=False, files=2)
+2026-03-16 11:34:46 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 11:34:48 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:15:50 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 13:15:50 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 13:15:50 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-16 13:15:50 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-16 13:15:50 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-16 13:15:50 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-16 13:15:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:15:54 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:15:54 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\cjb cheats menu 1.41.1-4-1-41-1-1773593304.zip
+2026-03-16 13:15:54 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip
+2026-03-16 13:15:55 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:15:55 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip
+2026-03-16 13:15:55 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip | localAttempt=1
+2026-03-16 13:15:55 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:15:55 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'CJB Cheats Menu' (sanitize=True, titleCase=True)
+2026-03-16 13:15:55 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:15:55 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=cjb cheats menu 1.41.1-4-1-41-1-1773593304.zip | baseName=cjb cheats menu 1.41.1-4-1-41-1-1773593304.zip
+2026-03-16 13:15:57 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip | elapsed=2.09s
+2026-03-16 13:15:57 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip | strategyIndex=1/4
+2026-03-16 13:15:57 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/CJB Cheats Menu 1.41.1-4-1-41-1-1773593304.zip' (manager=False, files=2)
+2026-03-16 13:15:57 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:16:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:16:10 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:16:10 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\cjb item spawner 2.5.6-93-2-5-6-1773593367.zip
+2026-03-16 13:16:10 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip
+2026-03-16 13:16:11 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:16:11 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip
+2026-03-16 13:16:11 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip | localAttempt=1
+2026-03-16 13:16:11 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:16:11 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'CJB Item Spawner' (sanitize=True, titleCase=True)
+2026-03-16 13:16:11 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:16:11 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=cjb item spawner 2.5.6-93-2-5-6-1773593367.zip | baseName=cjb item spawner 2.5.6-93-2-5-6-1773593367.zip
+2026-03-16 13:16:13 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip | elapsed=1.86s
+2026-03-16 13:16:13 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip | strategyIndex=1/4
+2026-03-16 13:16:13 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/CJB Item Spawner 2.5.6-93-2-5-6-1773593367.zip' (manager=False, files=2)
+2026-03-16 13:16:13 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:16:17 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:16:17 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\cjb show item sell price 1.10.6-5-1-10-6-1773593422.zip
+2026-03-16 13:16:17 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip
+2026-03-16 13:16:18 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:16:18 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip
+2026-03-16 13:16:18 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip | localAttempt=1
+2026-03-16 13:16:18 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:16:18 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'CJB Show Item Sell Price' (sanitize=True, titleCase=True)
+2026-03-16 13:16:18 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:16:18 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=cjb show item sell price 1.10.6-5-1-10-6-1773593422.zip | baseName=cjb show item sell price 1.10.6-5-1-10-6-1773593422.zip
+2026-03-16 13:16:20 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip | elapsed=1.80s
+2026-03-16 13:16:20 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip | strategyIndex=1/4
+2026-03-16 13:16:20 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/CJB Show Item Sell Price 1.10.6-5-1-10-6-1773593422.zip' (manager=False, files=2)
+2026-03-16 13:16:20 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:16:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:16:32 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:16:37 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:16:37 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\lookup anything 1.55.0-541-1-55-0-1773543281.zip
+2026-03-16 13:16:37 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip
+2026-03-16 13:16:39 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:16:39 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip
+2026-03-16 13:16:39 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip | localAttempt=1
+2026-03-16 13:16:39 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:16:39 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Lookup Anything' (sanitize=True, titleCase=True)
+2026-03-16 13:16:39 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:16:39 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=lookup anything 1.55.0-541-1-55-0-1773543281.zip | baseName=lookup anything 1.55.0-541-1-55-0-1773543281.zip
+2026-03-16 13:16:40 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip | elapsed=1.81s
+2026-03-16 13:16:40 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip | strategyIndex=1/4
+2026-03-16 13:16:40 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Lookup Anything 1.55.0-541-1-55-0-1773543281.zip' (manager=False, files=2)
+2026-03-16 13:16:40 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:16:44 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:16:44 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\automate 2.6.1-1063-2-6-1-1773591401.zip
+2026-03-16 13:16:44 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip
+2026-03-16 13:16:45 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:16:45 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip
+2026-03-16 13:16:45 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip | localAttempt=1
+2026-03-16 13:16:45 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:16:45 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Automate' (sanitize=True, titleCase=True)
+2026-03-16 13:16:46 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:16:46 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=automate 2.6.1-1063-2-6-1-1773591401.zip | baseName=automate 2.6.1-1063-2-6-1-1773591401.zip
+2026-03-16 13:16:47 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip | elapsed=1.85s
+2026-03-16 13:16:47 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip | strategyIndex=1/4
+2026-03-16 13:16:47 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Automate 2.6.1-1063-2-6-1-1773591401.zip' (manager=False, files=2)
+2026-03-16 13:16:47 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:16:47 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:16:57 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:16:57 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\tractor mod 4.24.4-1401-4-24-4-1773543639.zip
+2026-03-16 13:16:57 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip
+2026-03-16 13:16:58 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:16:58 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip
+2026-03-16 13:16:58 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip | localAttempt=1
+2026-03-16 13:16:58 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:16:58 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Tractor Mod' (sanitize=True, titleCase=True)
+2026-03-16 13:16:58 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:16:58 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=tractor mod 4.24.4-1401-4-24-4-1773543639.zip | baseName=tractor mod 4.24.4-1401-4-24-4-1773543639.zip
+2026-03-16 13:17:00 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip | elapsed=1.79s
+2026-03-16 13:17:00 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip | strategyIndex=1/4
+2026-03-16 13:17:00 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Tractor Mod 4.24.4-1401-4-24-4-1773543639.zip' (manager=False, files=2)
+2026-03-16 13:17:00 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:17:00 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:17:03 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:17:03 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\chests anywhere 1.30.1-518-1-30-1-1773542861.zip
+2026-03-16 13:17:03 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip
+2026-03-16 13:17:04 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:17:04 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip
+2026-03-16 13:17:04 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip | localAttempt=1
+2026-03-16 13:17:04 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:17:04 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Chests Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 13:17:04 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:17:04 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=chests anywhere 1.30.1-518-1-30-1-1773542861.zip | baseName=chests anywhere 1.30.1-518-1-30-1-1773542861.zip
+2026-03-16 13:17:06 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip | elapsed=1.73s
+2026-03-16 13:17:06 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip | strategyIndex=1/4
+2026-03-16 13:17:06 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Chests Anywhere 1.30.1-518-1-30-1-1773542861.zip' (manager=False, files=2)
+2026-03-16 13:17:06 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:17:12 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:17:16 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:17:16 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\fast animations 1.16.2-1089-1-16-2-1773543134.zip
+2026-03-16 13:17:16 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip
+2026-03-16 13:17:17 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:17:17 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip
+2026-03-16 13:17:17 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip | localAttempt=1
+2026-03-16 13:17:17 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:17:17 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Fast Animations' (sanitize=True, titleCase=True)
+2026-03-16 13:17:17 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:17:17 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=fast animations 1.16.2-1089-1-16-2-1773543134.zip | baseName=fast animations 1.16.2-1089-1-16-2-1773543134.zip
+2026-03-16 13:17:19 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip | elapsed=1.81s
+2026-03-16 13:17:19 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip | strategyIndex=1/4
+2026-03-16 13:17:19 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Fast Animations 1.16.2-1089-1-16-2-1773543134.zip' (manager=False, files=2)
+2026-03-16 13:17:19 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:17:21 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:17:21 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\noclip mode 1.3.20-3900-1-3-20-1773543370.zip
+2026-03-16 13:17:21 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip
+2026-03-16 13:17:22 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:17:22 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip
+2026-03-16 13:17:22 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip | localAttempt=1
+2026-03-16 13:17:22 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:17:22 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Noclip Mode' (sanitize=True, titleCase=True)
+2026-03-16 13:17:23 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:17:23 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=noclip mode 1.3.20-3900-1-3-20-1773543370.zip | baseName=noclip mode 1.3.20-3900-1-3-20-1773543370.zip
+2026-03-16 13:17:24 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip | elapsed=1.77s
+2026-03-16 13:17:24 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip | strategyIndex=1/4
+2026-03-16 13:17:24 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Noclip Mode 1.3.20-3900-1-3-20-1773543370.zip' (manager=False, files=2)
+2026-03-16 13:17:24 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:17:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:17:26 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:17:26 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\skip intro 1.9.25-533-1-9-25-1773543464.zip
+2026-03-16 13:17:26 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip
+2026-03-16 13:17:27 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:17:27 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip
+2026-03-16 13:17:27 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip | localAttempt=1
+2026-03-16 13:17:27 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:17:27 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Skip Intro' (sanitize=True, titleCase=True)
+2026-03-16 13:17:28 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:17:28 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=skip intro 1.9.25-533-1-9-25-1773543464.zip | baseName=skip intro 1.9.25-533-1-9-25-1773543464.zip
+2026-03-16 13:17:29 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip | elapsed=1.78s
+2026-03-16 13:17:29 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip | strategyIndex=1/4
+2026-03-16 13:17:29 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Skip Intro 1.9.25-533-1-9-25-1773543464.zip' (manager=False, files=2)
+2026-03-16 13:17:29 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:17:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:17:49 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:17:50 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:17:50 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\data layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 13:17:50 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 13:17:51 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:17:51 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 13:17:51 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | localAttempt=1
+2026-03-16 13:17:51 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:17:51 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Data Layers' (sanitize=True, titleCase=True)
+2026-03-16 13:17:51 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:17:51 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=data layers 1.23.0-1691-1-23-0-1773543033.zip | baseName=data layers 1.23.0-1691-1-23-0-1773543033.zip
+2026-03-16 13:17:55 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | elapsed=3.92s
+2026-03-16 13:17:55 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip | strategyIndex=1/4
+2026-03-16 13:17:55 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Data Layers 1.23.0-1691-1-23-0-1773543033.zip' (manager=False, files=2)
+2026-03-16 13:17:55 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:18:00 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:18:00 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\central station 1.7.0-8000-1-7-0-1773542663.zip
+2026-03-16 13:18:00 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip
+2026-03-16 13:18:01 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:18:01 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip
+2026-03-16 13:18:01 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip | localAttempt=1
+2026-03-16 13:18:01 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:18:01 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Central Station' (sanitize=True, titleCase=True)
+2026-03-16 13:18:01 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:18:01 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=central station 1.7.0-8000-1-7-0-1773542663.zip | baseName=central station 1.7.0-8000-1-7-0-1773542663.zip
+2026-03-16 13:18:03 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip | elapsed=1.77s
+2026-03-16 13:18:03 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip | strategyIndex=1/4
+2026-03-16 13:18:03 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Central Station 1.7.0-8000-1-7-0-1773542663.zip' (manager=False, files=2)
+2026-03-16 13:18:03 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:18:03 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:18:09 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:18:09 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 13:18:09 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 13:18:10 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:18:10 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 13:18:10 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | localAttempt=1
+2026-03-16 13:18:10 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:18:10 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Horse Flute Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 13:18:11 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:18:11 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip | baseName=horse flute anywhere 1.3.6-7500-1-3-6-1773543209.zip
+2026-03-16 13:18:12 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | elapsed=1.82s
+2026-03-16 13:18:12 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip | strategyIndex=1/4
+2026-03-16 13:18:12 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Horse Flute Anywhere 1.3.6-7500-1-3-6-1773543209.zip' (manager=False, files=2)
+2026-03-16 13:18:12 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:18:16 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:18:16 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:18:16 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 13:18:16 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 13:18:17 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:18:17 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 13:18:17 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | localAttempt=1
+2026-03-16 13:18:17 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:18:17 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Crops Anytime Anywhere' (sanitize=True, titleCase=True)
+2026-03-16 13:18:17 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:18:17 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip | baseName=crops anytime anywhere 1.7.3-3000-1-7-3-1773542959.zip
+2026-03-16 13:18:19 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | elapsed=1.73s
+2026-03-16 13:18:19 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip | strategyIndex=1/4
+2026-03-16 13:18:19 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Crops Anytime Anywhere 1.7.3-3000-1-7-3-1773542959.zip' (manager=False, files=2)
+2026-03-16 13:18:19 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:18:25 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:18:25 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\debug mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 13:18:25 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 13:18:26 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:18:26 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 13:18:26 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | localAttempt=1
+2026-03-16 13:18:26 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:18:26 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Debug Mode' (sanitize=True, titleCase=True)
+2026-03-16 13:18:26 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:18:26 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=debug mode 1.17.4-679-1-17-4-1773543077.zip | baseName=debug mode 1.17.4-679-1-17-4-1773543077.zip
+2026-03-16 13:18:28 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | elapsed=1.81s
+2026-03-16 13:18:28 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip | strategyIndex=1/4
+2026-03-16 13:18:28 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Debug Mode 1.17.4-679-1-17-4-1773543077.zip' (manager=False, files=2)
+2026-03-16 13:18:28 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 13:18:28 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 13:18:31 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 13:18:31 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\small beach farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 13:18:31 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 13:18:32 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | downloadId=0 | queueApprox=1
+2026-03-16 13:18:32 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 13:18:32 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | localAttempt=1
+2026-03-16 13:18:32 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 13:18:32 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Small Beach Farm' (sanitize=True, titleCase=True)
+2026-03-16 13:18:32 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 13:18:32 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=small beach farm 2.5.14-3750-2-5-14-1773543539.zip | baseName=small beach farm 2.5.14-3750-2-5-14-1773543539.zip
+2026-03-16 13:18:34 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | elapsed=1.76s
+2026-03-16 13:18:34 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip | strategyIndex=1/4
+2026-03-16 13:18:34 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Small Beach Farm 2.5.14-3750-2-5-14-1773543539.zip' (manager=False, files=2)
+2026-03-16 13:18:34 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 19:30:38 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-16 19:30:38 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-16 19:30:38 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-16 19:30:38 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-16 19:30:38 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-16 19:30:38 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-16 19:30:39 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 19:30:51 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 19:30:56 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-16 19:30:56 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\-stardew valley expanded--3753-1-15-11-1751325459.zip
+2026-03-16 19:30:56 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip
+2026-03-16 19:30:57 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip | downloadId=0 | queueApprox=1
+2026-03-16 19:30:57 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip
+2026-03-16 19:30:57 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip | localAttempt=1
+2026-03-16 19:30:57 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-16 19:30:57 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Stardew Valley Expanded' (sanitize=True, titleCase=True)
+2026-03-16 19:30:57 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-16 19:31:01 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=-stardew valley expanded--3753-1-15-11-1751325459.zip | baseName=-stardew valley expanded--3753-1-15-11-1751325459.zip
+2026-03-16 19:31:03 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip | elapsed=5.84s
+2026-03-16 19:31:03 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip | strategyIndex=1/4
+2026-03-16 19:31:03 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/-Stardew Valley Expanded--3753-1-15-11-1751325459.zip' (manager=False, files=2)
+2026-03-16 19:31:03 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-16 19:31:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 19:31:10 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=c:\users\necromante96official\downloads\frontier farm-3753-1-15-11-1751325482.zip | baseName=frontier farm-3753-1-15-11-1751325482.zip
+2026-03-16 19:31:14 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=c:\users\necromante96official\downloads\grandpa's farm-3753-1-15-11-1751325509.zip | baseName=grandpa's farm-3753-1-15-11-1751325509.zip
+2026-03-16 19:31:17 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 19:31:17 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=c:\users\necromante96official\downloads\immersive farm 2 remastered-3753-1-15-11-1751325564.zip | baseName=immersive farm 2 remastered-3753-1-15-11-1751325564.zip
+2026-03-16 19:31:21 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=c:\users\necromante96official\downloads\grampleton fields-3753-1-15-9-1741905961.zip | baseName=grampleton fields-3753-1-15-9-1741905961.zip
+2026-03-16 19:31:30 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-16 19:31:42 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:33:53 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-17 23:33:53 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-17 23:33:53 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-17 23:33:53 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-17 23:33:53 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-17 23:33:53 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-17 23:33:54 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:33:59 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:33:59 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\npc map locations 3.5.1-239-3-5-1-1773596759.zip
+2026-03-17 23:33:59 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip
+2026-03-17 23:34:00 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:34:00 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip
+2026-03-17 23:34:00 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip | localAttempt=1
+2026-03-17 23:34:00 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:34:00 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'NPC Map Locations' (sanitize=True, titleCase=True)
+2026-03-17 23:34:00 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:34:00 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=npc map locations 3.5.1-239-3-5-1-1773596759.zip | baseName=npc map locations 3.5.1-239-3-5-1-1773596759.zip
+2026-03-17 23:34:02 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip | elapsed=1.87s
+2026-03-17 23:34:02 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip | strategyIndex=1/4
+2026-03-17 23:34:02 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/NPC Map Locations 3.5.1-239-3-5-1-1773596759.zip' (manager=False, files=2)
+2026-03-17 23:34:02 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:34:07 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:34:09 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:34:09 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\npc location compass 1.5.3-3045-1-5-3-1773596874.zip
+2026-03-17 23:34:09 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip
+2026-03-17 23:34:10 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:34:10 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip
+2026-03-17 23:34:10 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip | localAttempt=1
+2026-03-17 23:34:10 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:34:10 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'NPC Location Compass' (sanitize=True, titleCase=True)
+2026-03-17 23:34:11 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:34:11 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=npc location compass 1.5.3-3045-1-5-3-1773596874.zip | baseName=npc location compass 1.5.3-3045-1-5-3-1773596874.zip
+2026-03-17 23:34:12 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip | elapsed=1.84s
+2026-03-17 23:34:12 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip | strategyIndex=1/4
+2026-03-17 23:34:12 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/NPC Location Compass 1.5.3-3045-1-5-3-1773596874.zip' (manager=False, files=2)
+2026-03-17 23:34:12 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:34:20 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:34:27 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:34:27 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\bouhm's pet dogs 3.0.2-570-3-0-2-1773596950.zip
+2026-03-17 23:34:27 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip
+2026-03-17 23:34:28 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:34:28 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip
+2026-03-17 23:34:28 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip | localAttempt=1
+2026-03-17 23:34:28 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:34:28 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Bouhm's Pet Dogs' (sanitize=True, titleCase=True)
+2026-03-17 23:34:28 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:34:28 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=bouhm's pet dogs 3.0.2-570-3-0-2-1773596950.zip | baseName=bouhm's pet dogs 3.0.2-570-3-0-2-1773596950.zip
+2026-03-17 23:34:30 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip | elapsed=1.82s
+2026-03-17 23:34:30 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip | strategyIndex=1/4
+2026-03-17 23:34:30 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Bouhm's Pet Dogs 3.0.2-570-3-0-2-1773596950.zip' (manager=False, files=2)
+2026-03-17 23:34:30 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:34:32 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:51:33 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-17 23:51:33 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-17 23:51:33 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-17 23:51:33 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-17 23:51:33 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-17 23:51:33 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-17 23:51:34 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:51:37 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:51:37 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\generic mod config menu 1.16.0-5098-1-16-0-1760816937.zip
+2026-03-17 23:51:37 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip
+2026-03-17 23:51:38 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:51:38 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip
+2026-03-17 23:51:38 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip | localAttempt=1
+2026-03-17 23:51:38 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:51:38 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Generic Mod Config Menu' (sanitize=True, titleCase=True)
+2026-03-17 23:51:39 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:51:39 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=generic mod config menu 1.16.0-5098-1-16-0-1760816937.zip | baseName=generic mod config menu 1.16.0-5098-1-16-0-1760816937.zip
+2026-03-17 23:51:40 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip | elapsed=1.85s
+2026-03-17 23:51:40 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip | strategyIndex=1/4
+2026-03-17 23:51:40 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Generic Mod Config Menu 1.16.0-5098-1-16-0-1760816937.zip' (manager=False, files=2)
+2026-03-17 23:51:40 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:51:47 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:51:47 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\spacecore 1.28.4-1348-1-28-4-1760884041.zip
+2026-03-17 23:51:47 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip
+2026-03-17 23:51:48 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:51:48 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip
+2026-03-17 23:51:48 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip | localAttempt=1
+2026-03-17 23:51:48 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:51:48 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Spacecore' (sanitize=True, titleCase=True)
+2026-03-17 23:51:48 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:51:49 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=spacecore 1.28.4-1348-1-28-4-1760884041.zip | baseName=spacecore 1.28.4-1348-1-28-4-1760884041.zip
+2026-03-17 23:51:50 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip | elapsed=1.96s
+2026-03-17 23:51:50 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip | strategyIndex=1/4
+2026-03-17 23:51:50 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/SpaceCore 1.28.4-1348-1-28-4-1760884041.zip' (manager=False, files=2)
+2026-03-17 23:51:50 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:51:50 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:51:54 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:51:54 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\json assets 1.11.11-1720-1-11-11-1760816874.zip
+2026-03-17 23:51:54 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip
+2026-03-17 23:51:55 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:51:55 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip
+2026-03-17 23:51:55 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip | localAttempt=1
+2026-03-17 23:51:55 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:51:55 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Json Assets' (sanitize=True, titleCase=True)
+2026-03-17 23:51:55 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:51:55 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=json assets 1.11.11-1720-1-11-11-1760816874.zip | baseName=json assets 1.11.11-1720-1-11-11-1760816874.zip
+2026-03-17 23:51:57 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip | elapsed=1.83s
+2026-03-17 23:51:57 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip | strategyIndex=1/4
+2026-03-17 23:51:57 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Json Assets 1.11.11-1720-1-11-11-1760816874.zip' (manager=False, files=2)
+2026-03-17 23:51:57 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:52:01 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:52:01 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\experience bars 1.4.6-509-1-4-6-1760816811.zip
+2026-03-17 23:52:01 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip
+2026-03-17 23:52:03 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:52:03 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip
+2026-03-17 23:52:03 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip | localAttempt=1
+2026-03-17 23:52:03 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:52:03 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Experience Bars' (sanitize=True, titleCase=True)
+2026-03-17 23:52:03 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:52:03 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=experience bars 1.4.6-509-1-4-6-1760816811.zip | baseName=experience bars 1.4.6-509-1-4-6-1760816811.zip
+2026-03-17 23:52:04 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip | elapsed=1.83s
+2026-03-17 23:52:04 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip | strategyIndex=1/4
+2026-03-17 23:52:04 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Experience Bars 1.4.6-509-1-4-6-1760816811.zip' (manager=False, files=2)
+2026-03-17 23:52:04 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:52:04 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:52:17 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:52:30 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:52:36 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:52:36 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\satchels 1.0.2-20625-1-0-2-1732850531.zip
+2026-03-17 23:52:36 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip
+2026-03-17 23:52:37 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:52:37 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip
+2026-03-17 23:52:37 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip | localAttempt=1
+2026-03-17 23:52:37 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:52:37 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Satchels' (sanitize=True, titleCase=True)
+2026-03-17 23:52:38 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:52:38 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=satchels 1.0.2-20625-1-0-2-1732850531.zip | baseName=satchels 1.0.2-20625-1-0-2-1732850531.zip
+2026-03-17 23:52:39 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip | elapsed=1.80s
+2026-03-17 23:52:39 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip | strategyIndex=1/4
+2026-03-17 23:52:39 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Satchels 1.0.2-20625-1-0-2-1732850531.zip' (manager=False, files=2)
+2026-03-17 23:52:39 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:52:42 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:52:55 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:53:07 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:53:07 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\random cats in events 1.1.0-26444-1-1-0-1722448976.zip
+2026-03-17 23:53:07 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip
+2026-03-17 23:53:08 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:53:08 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip
+2026-03-17 23:53:08 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip | localAttempt=1
+2026-03-17 23:53:08 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:53:08 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Random Cats In Events' (sanitize=True, titleCase=True)
+2026-03-17 23:53:09 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:53:09 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=random cats in events 1.1.0-26444-1-1-0-1722448976.zip | baseName=random cats in events 1.1.0-26444-1-1-0-1722448976.zip
+2026-03-17 23:53:10 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip | elapsed=1.78s
+2026-03-17 23:53:10 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip | strategyIndex=1/4
+2026-03-17 23:53:10 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Random Cats In Events 1.1.0-26444-1-1-0-1722448976.zip' (manager=False, files=2)
+2026-03-17 23:53:10 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:53:10 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:53:22 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:53:35 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:53:40 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:53:40 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\autocorrectvalley 1.0.1-33407-1-0-1-1745175527.zip
+2026-03-17 23:53:40 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip
+2026-03-17 23:53:42 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:53:42 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip
+2026-03-17 23:53:42 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip | localAttempt=1
+2026-03-17 23:53:42 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:53:42 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Autocorrectvalley' (sanitize=True, titleCase=True)
+2026-03-17 23:53:42 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:53:42 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=autocorrectvalley 1.0.1-33407-1-0-1-1745175527.zip | baseName=autocorrectvalley 1.0.1-33407-1-0-1-1745175527.zip
+2026-03-17 23:53:44 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip | elapsed=1.83s
+2026-03-17 23:53:44 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip | strategyIndex=1/4
+2026-03-17 23:53:44 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/AutocorrectValley 1.0.1-33407-1-0-1-1745175527.zip' (manager=False, files=2)
+2026-03-17 23:53:44 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:53:48 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:58:45 | INFO | MO2Tools.Installer | Inicializando AutoInstaller | log=D:\ModOrganizer2\plugins\MO2Tools\Logs\mo2tools_installer.log | hasOrganizer=True | hasDownloadManager=True
+2026-03-17 23:58:45 | INFO | MO2Tools.Installer | Hook de download registrado com sucesso.
+2026-03-17 23:58:45 | INFO | MO2Tools.Installer | Hook de falha de download registrado com sucesso.
+2026-03-17 23:58:45 | INFO | MO2Tools.Installer | Hook de remoção de download registrado com sucesso.
+2026-03-17 23:58:45 | INFO | MO2Tools.Installer | Hook de pausa de download registrado com sucesso.
+2026-03-17 23:58:45 | DEBUG | MO2Tools.Installer | Maintenance timer iniciado | intervalMs=900
+2026-03-17 23:58:46 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:58:48 | DEBUG | MO2Tools.Installer | Processando download completo | id=0 | dedupeEvent=True
+2026-03-17 23:58:48 | DEBUG | MO2Tools.Installer | Verificando assinatura de dedupe de evento | signature=0|d:\modorganizer2\downloads\jump over 1.3.0-1844-1-3-0-1721082019.zip
+2026-03-17 23:58:48 | DEBUG | MO2Tools.Installer | Caminho de download obtido | id=0 | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip
+2026-03-17 23:58:49 | DEBUG | MO2Tools.Installer | Arquivo enfileirado | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip | downloadId=0 | queueApprox=1
+2026-03-17 23:58:49 | INFO | MO2Tools.Installer | Download enfileirado para instalação | id=0 | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip
+2026-03-17 23:58:49 | INFO | MO2Tools.Installer | Iniciando instalação automática | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip | localAttempt=1
+2026-03-17 23:58:49 | DEBUG | MO2Tools.Installer | Tentativa de instalação iniciada | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip | fast=True | autoReplace=True | timeout=6.0s
+2026-03-17 23:58:49 | INFO | MO2Tools.Installer | Nome de instalação calculado: 'Jump Over' (sanitize=True, titleCase=True)
+2026-03-17 23:58:49 | DEBUG | MO2Tools.Installer | Processamento da fila adiado: instalacao em andamento | pendingApprox=0
+2026-03-17 23:58:50 | INFO | MO2Tools.Installer | Evento onModInstalled recebido | installFile=jump over 1.3.0-1844-1-3-0-1721082019.zip | baseName=jump over 1.3.0-1844-1-3-0-1721082019.zip
+2026-03-17 23:58:51 | INFO | MO2Tools.Installer | Instalação confirmada por evento | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip | elapsed=1.79s
+2026-03-17 23:58:51 | DEBUG | MO2Tools.Installer | Instalação concluída por estratégia | path=D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip | strategyIndex=1/4
+2026-03-17 23:58:51 | INFO | MO2Tools.Installer | Limpeza pós-instalação concluída para 'D:/ModOrganizer2/downloads/Jump Over 1.3.0-1844-1-3-0-1721082019.zip' (manager=False, files=2)
+2026-03-17 23:58:51 | DEBUG | MO2Tools.Installer | Reagendando processamento da fila | pendingApprox=0
+2026-03-17 23:58:59 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:59:11 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:59:24 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0
+2026-03-17 23:59:37 | DEBUG | MO2Tools.Installer | Snapshot fila | queueApprox=0 | pending=0 | inflight=0 | jobs=0 | failures=0

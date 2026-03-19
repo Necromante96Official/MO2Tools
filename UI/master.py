@@ -36,7 +36,7 @@ class MO2ToolsDialog(QDialog):
         self._status_label = None
         self._toggle_items = []
 
-        self.setWindowTitle("MO2Tools v0.1.8 - Premium Control Center")
+        self.setWindowTitle("MO2Tools v0.1.9 - Premium Control Center")
         self.setMinimumSize(860, 560)
         self.setStyleSheet(
             "QDialog {"
@@ -79,7 +79,7 @@ class MO2ToolsDialog(QDialog):
         root_layout.addWidget(subtitle)
 
         badge_row = QHBoxLayout()
-        badge = QLabel("v0.1.8")
+        badge = QLabel("v0.1.9")
         badge.setObjectName("badge")
         badge_row.addWidget(badge)
         badge_row.addStretch()
@@ -97,7 +97,7 @@ class MO2ToolsDialog(QDialog):
         overview_layout.setContentsMargins(12, 12, 12, 12)
         overview_layout.setSpacing(8)
         overview_layout.addWidget(self._section_title("Resumo"))
-        overview_layout.addWidget(QLabel("Versão: 0.1.8"))
+        overview_layout.addWidget(QLabel("Versão: 0.1.9"))
         overview_layout.addWidget(
             QLabel("Desenvolvido por: Necromante96Official"))
         overview_layout.addWidget(QLabel("Plugin: MO2Tools"))
@@ -133,6 +133,8 @@ class MO2ToolsDialog(QDialog):
             install_layout, "Ativar Fast Install", "fastInstall", True)
         self.cb_auto_replace, self.lb_auto_replace = self._add_toggle(
             install_layout, "Ativar Auto Replace", "autoReplace", True)
+        self.cb_inplace_update, self.lb_inplace_update = self._add_toggle(
+            install_layout, "Atualizar mod existente in-place", "inPlaceUpdateExistingMod", True)
         self.cb_sanitize_name, self.lb_sanitize_name = self._add_toggle(
             install_layout, "Limpar nome do mod", "sanitizeModName", True)
         self.cb_title_case, self.lb_title_case = self._add_toggle(
@@ -304,6 +306,7 @@ class MO2ToolsDialog(QDialog):
             "autoInstall": True,
             "fastInstall": True,
             "autoReplace": True,
+            "inPlaceUpdateExistingMod": True,
             "sanitizeModName": True,
             "titleCaseModName": True,
             "strictArchiveCheck": True,
@@ -387,6 +390,7 @@ class MO2ToolsDialog(QDialog):
             "Status Live: "
             f"enabled={state.get('enabled')} | autoInstall={state.get('autoInstall')} | "
             f"fastInstall={state.get('fastInstall')} | autoReplace={state.get('autoReplace')} | "
+            f"inPlace={state.get('inPlaceUpdateExistingMod')} | "
             f"sanitize={state.get('sanitizeModName')} | titleCase={state.get('titleCaseModName')} | "
             f"strictArchive={state.get('strictArchiveCheck')} | deleteDownload={state.get('deleteDownloadAfterInstall')} | "
             f"deleteSidecars={state.get('deleteDownloadSidecars')} | autoVersionFix={state.get('autoVersionFixEnabled')} | "
